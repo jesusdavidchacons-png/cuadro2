@@ -29,25 +29,24 @@
 
     <div id="overlay">
       <h1 style="margin-bottom: 20px;">Cuadro Mágico AR</h1>
-      <p style="margin-bottom: 30px;">Apunta al cuadro con tus Quest 3</p>
+      <p style="margin-bottom: 30px;">Presiona para iniciar inmersión en Quest 3</p>
       <button id="startButton">INICIAR EXPERIENCIA</button>
     </div>
 
-    <!-- Escena AR configurada para WebAR -->
+    <!-- Escena configurada para solicitar WebXR y Passthrough -->
     <a-scene 
+      webxr="requiredFeatures: passthrough;"
       mindar-image="imageTargetSrc: ./marcador.mind; filterMinCF: 0.0001; filterBeta: 0.001;" 
-      vr-mode-ui="enabled: false" 
+      vr-mode-ui="enabled: true" 
       device-orientation-permission-ui="enabled: false"
       embedded>
       
       <a-assets>
-        <!-- Asegúrate de que el nombre del archivo de video sea exacto -->
         <video id="videoProyectado" src="./video.mp4" loop="true" crossorigin="anonymous" playsinline muted></video>
       </a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-      <!-- El objetivo es el índice 0 del archivo marcador.mind -->
       <a-entity mindar-image-target="targetIndex: 0" id="objetivo">
         <a-video src="#videoProyectado" width="1" height="0.6" position="0 0 0"></a-video>
       </a-entity>
@@ -58,16 +57,21 @@
       const overlay = document.querySelector('#overlay');
       const startButton = document.querySelector('#startButton');
       const video = document.querySelector('#videoProyectado');
-      const objetivo = document.querySelector('#objetivo');
+      const scene = document.querySelector('a-scene');
 
-      // Desbloqueo de audio y inicio de video al pulsar el botón
       startButton.addEventListener('click', () => {
+        // Ocultar overlay
         overlay.style.display = 'none';
+        
+        // Solicitar modo VR/WebXR inmersivo
+        scene.enterVR();
+        
+        // Reproducir video
         video.muted = false;
         video.play().catch(console.error);
       });
 
-      // Control de reproducción según tracking
+      const objetivo = document.querySelector('#objetivo');
       objetivo.addEventListener("targetFound", () => {
         video.play();
       });
