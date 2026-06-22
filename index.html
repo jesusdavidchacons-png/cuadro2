@@ -7,20 +7,24 @@
     <style>
       #overlay {
         position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.7); display: flex;
+        background: rgba(0,0,0,0.7); display: flex; flex-direction: column;
         justify-content: center; align-items: center; z-index: 1000;
+        gap: 20px;
       }
-      button { padding: 20px 40px; font-size: 20px; cursor: pointer; border-radius: 10px; border: none; }
+      button { padding: 20px 40px; font-size: 20px; cursor: pointer; border-radius: 10px; border: none; background: white; }
+      #btn-ar { background: #4285f4; color: white; }
     </style>
   </head>
   <body>
     <div id="overlay">
-      <button id="btn-start">VER MI CUADRO EN AR</button>
+      <button id="btn-start">VER MI CUADRO (Cámara estándar)</button>
+      <button id="btn-ar">AR (Realidad Mixta Quest 3)</button>
     </div>
 
     <a-scene 
       mindar-image="imageTargetSrc: ./tu_cuadro.mind; autoStart: false; uiLoading: no; uiError: no; uiScanning: no;" 
-      embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      webxr="requiredFeatures: hit-test, passthrough;"
+      embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: true" device-orientation-permission-ui="enabled: false">
       
       <a-assets>
         <video id="vid" src="./tu_video.mp4" loop="true" playsinline crossorigin="anonymous"></video>
@@ -28,23 +32,28 @@
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-      <!-- Este grupo se mostrará solo cuando MindAR detecte tu cuadro -->
       <a-entity mindar-image-target="targetIndex: 0">
         <a-video src="#vid" width="1" height="0.6" position="0 0 0"></a-video>
       </a-entity>
     </a-scene>
 
     <script>
-      const btn = document.querySelector('#btn-start');
       const scene = document.querySelector('a-scene');
       const video = document.querySelector('#vid');
 
-      btn.addEventListener('click', () => {
+      // Botón estándar
+      document.querySelector('#btn-start').addEventListener('click', () => {
         document.querySelector('#overlay').style.display = 'none';
-        scene.mindarImageSystem.start(); // Inicia la cámara
+        scene.mindarImageSystem.start();
       });
 
-      // Lógica para que el video suene al tocar la pantalla
+      // Botón AR para Quest 3 (Passthrough)
+      document.querySelector('#btn-ar').addEventListener('click', () => {
+        document.querySelector('#overlay').style.display = 'none';
+        scene.enterAR(); // Activa WebXR AR
+        scene.mindarImageSystem.start();
+      });
+
       scene.addEventListener('click', () => {
         video.play();
       });
