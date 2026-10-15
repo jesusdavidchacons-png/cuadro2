@@ -40,7 +40,7 @@
       line-height: 1.45;
     }
 
-    /* HEADER MINIMAL CON LOGO */
+    /* HEADER CON LOGO OFICIAL */
     header {
       position: fixed;
       top: 0;
@@ -336,7 +336,7 @@
       background: rgba(255, 255, 255, 0.12);
     }
 
-    /* TABS */
+    /* PESTAÑAS FILTRO */
     .tabs-bar {
       max-width: 1200px;
       margin: 0 auto 28px;
@@ -370,7 +370,7 @@
       border-color: rgba(255, 255, 255, 0.3);
     }
 
-    /* CARRUSEL TÁCTIL HORIZONTAL (NETFLIX STYLE) */
+    /* VIEWPORT HORIZONTAL */
     .carousel-viewport {
       display: flex;
       gap: 16px;
@@ -405,7 +405,7 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
     }
 
-    /* Estado Especial Activo (Lara con video banner2) */
+    /* Lara Activo */
     .poster-card.is-active {
       border: 1.5px solid rgba(47, 129, 247, 0.65);
       box-shadow: 0 10px 30px rgba(47, 129, 247, 0.2);
@@ -416,7 +416,7 @@
       box-shadow: 0 20px 45px rgba(47, 129, 247, 0.45);
     }
 
-    /* Fondo de Video en la tarjeta de Lara */
+    /* Video en tarjeta de Lara */
     .card-video-bg {
       position: absolute;
       inset: 0;
@@ -426,7 +426,7 @@
       z-index: 1;
     }
 
-    /* Imagen estática para los demás */
+    /* Imagen de las camionetas en las tarjetas */
     .poster-image {
       position: absolute;
       inset: 0;
@@ -434,7 +434,7 @@
       height: 100%;
       object-fit: cover;
       transition: transform 0.6s ease;
-      filter: brightness(0.65) contrast(1.1);
+      filter: brightness(0.7) contrast(1.08);
       z-index: 1;
     }
 
@@ -503,9 +503,7 @@
       color: #79c0ff;
     }
 
-    /* ==============================================================
-       CARTEL MONUMENTAL "PRÓXIMAMENTE" AL CENTRO (EXPERIENCIA ANSIEDAD)
-       ============================================================== */
+    /* CARTEL MONUMENTAL "PRÓXIMAMENTE" AL CENTRO */
     .center-teaser-overlay {
       position: absolute;
       top: 44%;
@@ -563,7 +561,7 @@
       font-size: 10px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255, 255, 255, 0.65);
       font-weight: 600;
     }
 
@@ -835,7 +833,7 @@
 </head>
 <body>
 
-  <!-- HEADER CON EL LOGO -->
+  <!-- HEADER CON LOGO OFICIAL -->
   <header>
     <div class="brand-group">
       <img 
@@ -855,9 +853,9 @@
     </div>
   </header>
 
-  <!-- BANNER DE VIDEO DE FONDO (BANNER) -->
+  <!-- BANNER DE VIDEO DE FONDO -->
   <section class="hero-banner-container">
-    <video class="hero-video-bg" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1920&q=80">
+    <video class="hero-video-bg" autoplay muted loop playsinline poster="https://i.postimg.cc/Xqvqkdvk/Nano-Banana-Pro-quiero-cambiar-el-fondo-en-otra-carretera-pero-sin-modificar-nada-de-la-camioneta.png">
       <source src="./banner.mp4" type="video/mp4">
       <source src="banner.mp4" type="video/mp4">
       <source src="banner.webm" type="video/webm">
@@ -907,7 +905,7 @@
     </div>
   </div>
 
-  <!-- SECCIÓN CARRUSEL TÁCTIL HORIZONTAL (TIPO FORD / NETFLIX) -->
+  <!-- CARRUSEL TÁCTIL HORIZONTAL (TIPO FORD / NETFLIX) -->
   <section class="carousel-section" id="catalogo">
     <div class="carousel-header-wrapper">
       <div class="carousel-title-group">
@@ -989,8 +987,15 @@
   <script>
     const YOUTUBE_URL = "https://www.youtube-nocookie.com/embed/MDSpoX-GL0Y?autoplay=1&rel=0";
 
-    // 16 Estados: Lara 1º (con video banner2 en vivo), Aragua 2º, y los demás en Próximamente
-    const states = [
+    // 3 Imágenes originales de las camionetas para rotar en los estados
+    const originalVehicleImages = [
+      "https://i.postimg.cc/Xqvqkdvk/Nano-Banana-Pro-quiero-cambiar-el-fondo-en-otra-carretera-pero-sin-modificar-nada-de-la-camioneta.png",
+      "https://i.postimg.cc/XJf1kBPy/Nano-Banana-Pro-quiero-cambiar-el-fondo-en-otra-carretera-pero-sin-modificar-nada-de-la-camioneta.png",
+      "https://i.postimg.cc/28hdbNPH/Nano-Banana-Pro-quiero-cambiar-el-fondo-en-otra-carretera-pero-sin-modificar-nada-de-la-camioneta.png"
+    ];
+
+    // Estados base
+    const rawStates = [
       {
         id: "01",
         name: "Lara",
@@ -998,7 +1003,7 @@
         vehicle: "Changan CS55 Plus Turbo",
         type: "CS55 Plus",
         hasVideoBanner: true,
-        posterImg: "https://images.unsplash.com/photo-1508873696983-2df5293cb32b?auto=format&fit=crop&w=800&q=80",
+        posterImg: originalVehicleImages[0],
         test: "Dinámica y absorción de suspensión en los bulevares crepusculares y asfalto semiárido de Lara."
       },
       {
@@ -1007,7 +1012,6 @@
         available: false,
         vehicle: "Changan CS55 Plus Turbo",
         type: "CS55 Plus",
-        img: "https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?auto=format&fit=crop&w=800&q=80",
         test: "Agilidad del chasis en las cerradas curvas de selva nublada de Henri Pittier hacia la costa."
       },
       {
@@ -1016,7 +1020,6 @@
         available: false,
         vehicle: "Changan CS95 AWD",
         type: "CS95 AWD",
-        img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80",
         test: "Ascenso a gran altitud, frenado motor en bajadas pronunciadas y aclimatación en el Collado del Cóndor."
       },
       {
@@ -1025,7 +1028,6 @@
         available: false,
         vehicle: "Changan CS95 AWD",
         type: "CS95 AWD",
-        img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
         test: "Torque sostenido y confort de marcha en curvas estrechas de cordillera y calzadas empinadas."
       },
       {
@@ -1034,7 +1036,6 @@
         available: false,
         vehicle: "Changan CS55 Plus Turbo",
         type: "CS55 Plus",
-        img: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80",
         test: "Estabilidad con vientos cruzados sostenidos en el Istmo y paso seguro en las arenas de los Médanos."
       },
       {
@@ -1043,7 +1044,6 @@
         available: false,
         vehicle: "Changan CS95 AWD",
         type: "CS95 AWD",
-        img: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80",
         test: "Autonomía de crucero en rectas infinitas y tracción superior en la aproximación a La Gran Sabana."
       },
       {
@@ -1052,7 +1052,6 @@
         available: false,
         vehicle: "Changan CS55 Plus Turbo",
         type: "CS55 Plus",
-        img: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80",
         test: "Recuperación de aceleración y eficiencia térmica en autopistas interurbanas de alto flujo."
       },
       {
@@ -1061,7 +1060,6 @@
         available: false,
         vehicle: "Changan CS55 Plus Turbo",
         type: "CS55 Plus",
-        img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
         test: "Rendimiento del aire acondicionado bajo temperaturas costeras extremas y dinamismo en la Troncal 9."
       },
       {
@@ -1070,7 +1068,6 @@
         available: false,
         vehicle: "Changan CS95 AWD",
         type: "CS95 AWD",
-        img: "https://images.unsplash.com/photo-1511497584788-87676104235f?auto=format&fit=crop&w=800&q=80",
         test: "Filtrado acústico en cabina y tracción en pavimento húmedo cruzando la zona de Caripe."
       },
       {
@@ -1079,7 +1076,6 @@
         available: false,
         vehicle: "Changan CS55 Plus Turbo",
         type: "CS55 Plus",
-        img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
         test: "Frenado en bajadas con curvas de cornisa marina con vista directa al Golfo de Cariaco."
       },
       {
@@ -1088,7 +1084,6 @@
         available: false,
         vehicle: "Changan CS95 AWD",
         type: "CS95 AWD",
-        img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80",
         test: "Comportamiento del sistema de refrigeración en calor llanero de 38°C y solidez en largas rectas."
       },
       {
@@ -1097,7 +1092,6 @@
         available: false,
         vehicle: "Changan CS95 AWD",
         type: "CS95 AWD",
-        img: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=800&q=80",
         test: "Cruce de asfalto mixto a tierra compacta en la transición hacia el pie de monte andino."
       },
       {
@@ -1106,7 +1100,6 @@
         available: false,
         vehicle: "Changan CS55 Plus Turbo",
         type: "CS55 Plus",
-        img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80",
         test: "Eficiencia de combustible en trayectos planos de producción agrícola y control de crucero adaptativo."
       },
       {
@@ -1115,7 +1108,6 @@
         available: false,
         vehicle: "Changan CS55 Plus Turbo",
         type: "CS55 Plus",
-        img: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80",
         test: "Respuesta de los limpiaparabrisas automáticos y adherencia de llantas en tormentas tropicales repentinas."
       },
       {
@@ -1124,7 +1116,6 @@
         available: false,
         vehicle: "Changan CS55 Plus Turbo",
         type: "CS55 Plus",
-        img: "https://images.unsplash.com/photo-1477959858617-67f30bc75b82?auto=format&fit=crop&w=800&q=80",
         test: "Transición de la autopista Gran Mariscal de Ayacucho hacia el litoral costero de Higuerote."
       },
       {
@@ -1133,10 +1124,22 @@
         available: false,
         vehicle: "Changan CS95 AWD",
         type: "CS95 AWD",
-        img: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=80",
         test: "Presencia escénica y estabilidad estructural sobre los 8.6 kilómetros del Puente sobre el Lago de Maracaibo."
       }
     ];
+
+    // Asignación aleatoria balanceada de las 3 imágenes a los estados
+    const states = rawStates.map((st, idx) => {
+      if (st.hasVideoBanner) {
+        return st;
+      }
+      // Selección aleatoria usando el pool de 3 imágenes
+      const randImg = originalVehicleImages[(idx + Math.floor(Math.random() * 3)) % originalVehicleImages.length];
+      return {
+        ...st,
+        img: randImg
+      };
+    });
 
     const track = document.getElementById('carouselTrack');
 
@@ -1152,7 +1155,6 @@
         card.className = `poster-card ${item.available ? 'is-active' : ''}`;
         card.onclick = () => openStateDetails(item);
 
-        // Renderizado del Fondo: Video en vivo para Lara, imagen para los demás
         let mediaHtml = '';
         if (item.hasVideoBanner) {
           mediaHtml = `
@@ -1167,7 +1169,6 @@
           mediaHtml = `<img class="poster-image" src="${item.img}" alt="${item.name}" loading="lazy">`;
         }
 
-        // Cartel Monumental en el centro para los no disponibles
         const centerTeaser = !item.available ? `
           <div class="center-teaser-overlay">
             <div class="badge-lock-icon">🔒</div>
@@ -1234,14 +1235,13 @@
       document.body.style.overflow = 'auto';
     }
 
-    // Modal / Drawer de Detalle
+    // Modal / Visor de Estado
     const stateDrawer = document.getElementById('stateDrawer');
     const drawerVideoArea = document.getElementById('drawerVideoArea');
     const drawerBody = document.getElementById('drawerBody');
 
     function openStateDetails(item) {
       if (item.available) {
-        // Lara: Video expandido
         drawerVideoArea.innerHTML = `
           <video autoplay muted loop playsinline controls poster="${item.posterImg}">
             <source src="./banner2.mp4" type="video/mp4">
@@ -1265,10 +1265,9 @@
           </p>
         `;
       } else {
-        // Otros Estados en Próximamente
         drawerVideoArea.innerHTML = `
-          <img src="${item.img}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.6);">
-          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);gap:10px;">
+          <img src="${item.img}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.65);">
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.45);gap:10px;">
             <div style="font-size: 16px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,0.7); padding: 10px 24px; border-radius: 980px; border: 1px solid rgba(255,255,255,0.3);">
               🔒 PRÓXIMAMENTE
             </div>
