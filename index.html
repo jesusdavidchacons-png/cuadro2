@@ -2,25 +2,26 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tu Destino es Venezuela | Changan CS95 & CS55 Plus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Tu Destino es Venezuela | Changan CS95 AWD & CS55 Plus</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-main: #060709;
-      --bg-surface: #0e1116;
-      --bg-surface-elevated: #161b22;
-      --text-primary: #f0f3f6;
-      --text-secondary: #8b949e;
-      --text-muted: #484f58;
+      --bg-black: #050608;
+      --bg-surface: #0c0e12;
+      --bg-surface-elevated: #141720;
+      --text-white: #f5f6f8;
+      --text-muted: #8b929e;
+      --text-dim: #4b525f;
       --accent-blue: #2f81f7;
-      --accent-silver: #d0d7de;
+      --accent-teal: #2ea043;
       --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-hover: rgba(255, 255, 255, 0.2);
-      --glass: rgba(14, 17, 22, 0.75);
+      --border-focus: rgba(255, 255, 255, 0.25);
+      --nav-glass: rgba(5, 6, 8, 0.75);
     }
 
     * {
@@ -28,24 +29,25 @@
       margin: 0;
       padding: 0;
       -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      background-color: var(--bg-main);
-      color: var(--text-primary);
+      background-color: var(--bg-black);
+      color: var(--text-white);
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       overflow-x: hidden;
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
-    /* NAV APPLE MINIMAL */
+    /* BARRA DE NAVEGACIÓN ESTILO APPLE */
     header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 48px;
-      background: var(--glass);
+      background: var(--nav-glass);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       z-index: 1000;
@@ -53,461 +55,523 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 40px;
+      padding: 0 28px;
     }
 
-    .brand-mark {
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-title {
       font-size: 11px;
+      font-weight: 800;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      font-weight: 700;
-      color: var(--text-primary);
+      color: #fff;
+    }
+
+    .brand-badge {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      background: rgba(47, 129, 247, 0.14);
+      color: var(--accent-blue);
+      border: 1px solid rgba(47, 129, 247, 0.25);
+      padding: 2px 7px;
+      border-radius: 980px;
+      text-transform: uppercase;
+    }
+
+    .nav-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 16px;
     }
 
-    .brand-tag {
-      color: var(--accent-blue);
-      font-weight: 500;
-      font-size: 10px;
-      padding: 2px 6px;
-      background: rgba(47, 129, 247, 0.12);
-      border-radius: 4px;
-    }
-
-    nav {
-      display: flex;
-      gap: 28px;
-    }
-
-    nav a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 0.02em;
-      transition: color 0.2s ease;
-    }
-
-    nav a:hover {
-      color: var(--text-primary);
-    }
-
-    .nav-cta {
+    .nav-btn-reel {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid var(--border-subtle);
-      color: var(--text-primary);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
       padding: 6px 14px;
       border-radius: 980px;
-      font-size: 11px;
-      font-weight: 500;
       cursor: pointer;
-      transition: all 0.25s ease;
-    }
-
-    .nav-cta:hover {
-      background: rgba(255, 255, 255, 0.16);
-      border-color: var(--border-hover);
-    }
-
-    /* HERO */
-    .hero {
-      min-height: 94vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      display: inline-flex;
       align-items: center;
-      text-align: center;
-      padding: 120px 24px 60px;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn-reel:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: var(--border-focus);
+    }
+
+    /* BANNER DE VIDEO DE FONDO AL INICIO */
+    .hero-banner-container {
       position: relative;
-      background: radial-gradient(circle at 50% 30%, rgba(47, 129, 247, 0.08) 0%, transparent 60%);
+      width: 100%;
+      height: 92vh;
+      min-height: 600px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 60px;
+    }
+
+    .hero-video-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, 
+        rgba(5, 6, 8, 0.45) 0%, 
+        rgba(5, 6, 8, 0.2) 40%,
+        rgba(5, 6, 8, 0.8) 80%,
+        var(--bg-black) 100%);
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 28px;
+      width: 100%;
     }
 
     .campaign-eyebrow {
-      font-size: 12px;
-      text-transform: uppercase;
+      font-size: 11px;
       letter-spacing: 0.25em;
-      color: var(--accent-blue);
-      font-weight: 600;
-      margin-bottom: 18px;
-    }
-
-    .hero-title {
-      font-size: clamp(42px, 6.5vw, 84px);
+      text-transform: uppercase;
       font-weight: 700;
-      letter-spacing: -0.035em;
-      line-height: 1.05;
-      max-width: 980px;
-      margin-bottom: 24px;
+      color: var(--accent-blue);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .hero-title span {
-      background: linear-gradient(180deg, #FFFFFF 30%, rgba(255,255,255,0.45) 100%);
+    .campaign-eyebrow::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      display: inline-block;
+      animation: pulseDot 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .hero-heading {
+      font-size: clamp(38px, 6vw, 76px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      max-width: 860px;
+      margin-bottom: 16px;
+    }
+
+    .hero-heading span {
+      background: linear-gradient(180deg, #FFFFFF 30%, rgba(255, 255, 255, 0.6) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .hero-lead {
-      font-size: clamp(16px, 1.8vw, 20px);
-      color: var(--text-secondary);
-      max-width: 680px;
+    .hero-subheading {
+      font-size: clamp(15px, 1.6vw, 19px);
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 620px;
       font-weight: 400;
-      line-height: 1.6;
-      margin-bottom: 36px;
+      line-height: 1.5;
+      margin-bottom: 28px;
     }
 
-    .hero-actions {
+    .hero-buttons {
       display: flex;
+      align-items: center;
       gap: 14px;
-      align-items: center;
+      flex-wrap: wrap;
     }
 
-    .btn-primary {
-      background: var(--text-primary);
-      color: var(--bg-main);
-      border: none;
-      padding: 12px 26px;
-      border-radius: 980px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-primary:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--text-primary);
-      border: 1px solid var(--border-subtle);
+    .btn-solid-white {
+      background: #fff;
+      color: #000;
       padding: 12px 24px;
       border-radius: 980px;
       font-size: 13px;
-      font-weight: 500;
+      font-weight: 700;
+      border: none;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn-solid-white:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline-glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 980px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       transition: all 0.2s ease;
     }
 
-    .btn-secondary:hover {
-      border-color: var(--border-hover);
-      background: rgba(255, 255, 255, 0.04);
+    .btn-outline-glass:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
     }
 
-    /* METRICS STRIP */
-    .metrics-bar {
+    /* FRANJA DE CIFRAS */
+    .metric-strip {
       display: flex;
-      justify-content: center;
-      gap: 60px;
-      padding: 38px 24px;
-      border-top: 1px solid var(--border-subtle);
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 28px;
       border-bottom: 1px solid var(--border-subtle);
-      background: rgba(14, 17, 22, 0.4);
     }
 
-    .metric-item {
-      text-align: center;
+    .metric-cell {
+      display: flex;
+      flex-direction: column;
     }
 
-    .metric-number {
-      font-size: 32px;
-      font-weight: 700;
+    .metric-val {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 800;
       letter-spacing: -0.03em;
-      color: var(--text-primary);
+      color: #fff;
     }
 
     .metric-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-secondary);
-      margin-top: 4px;
-    }
-
-    /* EDITORIAL SECTION */
-    .section-editorial {
-      max-width: 1180px;
-      margin: 120px auto;
-      padding: 0 32px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 64px;
-      align-items: center;
-    }
-
-    .editorial-tag {
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent-blue);
-      font-weight: 600;
-      margin-bottom: 14px;
-    }
-
-    .editorial-h2 {
-      font-size: clamp(30px, 3.8vw, 48px);
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      font-weight: 700;
-    }
-
-    .editorial-body {
-      color: var(--text-secondary);
-      font-size: 16px;
-      line-height: 1.8;
-      font-weight: 400;
-    }
-
-    .editorial-body p + p {
-      margin-top: 20px;
-    }
-
-    /* PRODUCT TILES (APPLE STYLE) */
-    .vehicles-section {
-      max-width: 1280px;
-      margin: 0 auto 120px;
-      padding: 0 32px;
-    }
-
-    .section-header-clean {
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto 56px;
-    }
-
-    .section-header-clean h3 {
-      font-size: clamp(28px, 3vw, 42px);
-      letter-spacing: -0.03em;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .section-header-clean p {
-      color: var(--text-secondary);
-      font-size: 15px;
-    }
-
-    .vehicles-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    .vehicle-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 20px;
-      padding: 44px 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 540px;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.3s ease;
-    }
-
-    .vehicle-card:hover {
-      border-color: var(--border-hover);
-    }
-
-    .card-meta {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent-blue);
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .card-title {
-      font-size: 34px;
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      margin-bottom: 10px;
-    }
-
-    .card-desc {
-      color: var(--text-secondary);
-      font-size: 14px;
-      line-height: 1.6;
-      max-width: 420px;
-      margin-bottom: 24px;
-    }
-
-    .specs-pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 30px;
-    }
-
-    .specs-pill {
-      font-size: 11px;
-      padding: 4px 10px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-subtle);
-      border-radius: 980px;
-      color: var(--text-secondary);
-    }
-
-    .card-visual {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      min-height: 220px;
-      background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
-      border-radius: 12px;
-      border: 1px dashed rgba(255,255,255,0.06);
-    }
-
-    .visual-placeholder-text {
-      font-size: 11px;
-      text-transform: uppercase;
+      font-size: 10px;
       letter-spacing: 0.14em;
+      text-transform: uppercase;
       color: var(--text-muted);
-      text-align: center;
+      margin-top: 2px;
     }
 
-    /* 16 STATES SHOWCASE */
-    .states-section {
-      max-width: 1280px;
-      margin: 0 auto 130px;
-      padding: 0 32px;
+    /* FILTROS TIPO FORD */
+    .carousel-section {
+      padding: 80px 0 100px;
+      position: relative;
     }
 
-    .states-filter-bar {
+    .carousel-header-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 28px 24px;
       display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 36px;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
     }
 
-    .filter-btn {
-      background: transparent;
+    .carousel-title-group h2 {
+      font-size: clamp(26px, 3.2vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .carousel-title-group p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .carousel-arrows {
+      display: flex;
+      gap: 8px;
+    }
+
+    .carousel-arrow-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--bg-surface-elevated);
       border: 1px solid var(--border-subtle);
-      color: var(--text-secondary);
-      padding: 8px 16px;
-      border-radius: 980px;
-      font-size: 12px;
-      font-weight: 500;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       transition: all 0.2s ease;
     }
 
-    .filter-btn.active, .filter-btn:hover {
-      color: var(--text-primary);
-      border-color: var(--border-hover);
-      background: rgba(255, 255, 255, 0.06);
+    .carousel-arrow-btn:hover {
+      border-color: var(--border-focus);
+      background: rgba(255, 255, 255, 0.12);
     }
 
-    .states-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-
-    .state-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 14px;
-      padding: 22px 20px;
-      cursor: pointer;
-      transition: all 0.25s ease;
+    /* PESTAÑAS SELECTORAS FORD / NETFLIX */
+    .tabs-bar {
+      max-width: 1200px;
+      margin: 0 auto 28px;
+      padding: 0 28px;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 180px;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
 
-    .state-card:hover {
-      border-color: var(--accent-blue);
-      transform: translateY(-2px);
-      background: var(--bg-surface-elevated);
+    .tabs-bar::-webkit-scrollbar {
+      display: none;
     }
 
-    .state-num {
-      font-size: 11px;
+    .tab-item {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
       color: var(--text-muted);
-      font-weight: 600;
-      letter-spacing: 0.08em;
-    }
-
-    .state-name {
-      font-size: 19px;
-      font-weight: 600;
-      margin: 6px 0 2px;
-      letter-spacing: -0.02em;
-    }
-
-    .state-vehicle-tag {
-      font-size: 11px;
-      color: var(--accent-blue);
-      font-weight: 500;
-      margin-bottom: 12px;
-    }
-
-    .state-route-highlight {
+      padding: 8px 18px;
+      border-radius: 980px;
       font-size: 12px;
-      color: var(--text-secondary);
-      line-height: 1.5;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
 
-    /* PRODUCTION STANDARDS */
-    .tech-specs-section {
+    .tab-item.active, .tab-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* CONTENEDOR DEL CARRUSEL TÁCTIL HORIZONTAL (NETFLIX STYLE) */
+    .carousel-viewport {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 10px 28px 24px;
+      scrollbar-width: none;
+    }
+
+    .carousel-viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* TARJETA POSTER VERTICAL TIPO NETFLIX / FORD */
+    .poster-card {
+      flex: 0 0 clamp(280px, 28vw, 360px);
+      aspect-ratio: 9 / 14;
+      border-radius: 18px;
+      position: relative;
+      overflow: hidden;
+      scroll-snap-align: start;
+      cursor: pointer;
+      border: 1px solid var(--border-subtle);
       background: var(--bg-surface);
-      border-top: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 100px 32px;
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease;
     }
 
-    .tech-specs-inner {
-      max-width: 1180px;
-      margin: 0 auto;
+    .poster-card:hover {
+      transform: translateY(-6px) scale(1.015);
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
     }
 
-    .specs-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
-      margin-top: 50px;
+    .poster-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
     }
 
-    .spec-block {
-      border-left: 1px solid var(--border-subtle);
-      padding-left: 20px;
+    .poster-card:hover .poster-image {
+      transform: scale(1.05);
     }
 
-    .spec-block-title {
-      font-size: 12px;
+    .poster-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, 
+        rgba(5, 6, 8, 0.6) 0%, 
+        rgba(5, 6, 8, 0.05) 35%, 
+        rgba(5, 6, 8, 0.4) 65%,
+        rgba(5, 6, 8, 0.95) 100%);
+      z-index: 2;
+    }
+
+    /* CONTENIDO SUPERIOR DE LA TARJETA */
+    .poster-top-bar {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      right: 18px;
+      z-index: 3;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .vehicle-badge-ford {
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 4px 10px;
+      border-radius: 980px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #fff;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--accent-silver);
-      font-weight: 600;
-      margin-bottom: 10px;
     }
 
-    .spec-block-desc {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.6;
+    .vehicle-badge-ford.cs95 {
+      border-color: rgba(47, 129, 247, 0.4);
+      color: #79c0ff;
     }
 
-    /* MODAL VIDEO */
-    .modal-overlay {
+    .vehicle-badge-ford.cs55 {
+      border-color: rgba(46, 160, 67, 0.4);
+      color: #7ee787;
+    }
+
+    .state-index {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* CONTENIDO INFERIOR DE LA TARJETA */
+    .poster-bottom-content {
+      position: absolute;
+      bottom: 22px;
+      left: 20px;
+      right: 20px;
+      z-index: 3;
+    }
+
+    .poster-model-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      margin-bottom: 4px;
+    }
+
+    .poster-model-tag.cs55 {
+      color: var(--accent-teal);
+    }
+
+    .poster-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .poster-state-name {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: #fff;
+    }
+
+    .poster-arrow-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .poster-card:hover .poster-arrow-circle {
+      background: #fff;
+      color: #000;
+      transform: translateX(3px);
+    }
+
+    .poster-test-desc {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    /* MANIFIESTO EDITORIAL */
+    .editorial-section {
+      max-width: 1200px;
+      margin: 40px auto 100px;
+      padding: 0 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .editorial-title {
+      font-size: clamp(28px, 3.4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+
+    .editorial-p {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .editorial-p + .editorial-p {
+      margin-top: 18px;
+    }
+
+    /* MODAL DEL REEL DE YOUTUBE */
+    .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.88);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       z-index: 2000;
       display: none;
       align-items: center;
@@ -515,29 +579,30 @@
       padding: 24px;
     }
 
-    .modal-overlay.open {
+    .modal-backdrop.active {
       display: flex;
     }
 
-    .modal-content {
+    .modal-window {
       width: 100%;
-      max-width: 960px;
+      max-width: 980px;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      border-radius: 16px;
+      border-radius: 18px;
       overflow: hidden;
       position: relative;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
     }
 
     .modal-close-btn {
       position: absolute;
       top: 16px;
       right: 16px;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.65);
       border: 1px solid var(--border-subtle);
-      color: var(--text-primary);
-      width: 32px;
-      height: 32px;
+      color: #fff;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
@@ -545,15 +610,21 @@
       justify-content: center;
       z-index: 10;
       font-size: 16px;
+      transition: all 0.2s ease;
     }
 
-    .video-aspect {
+    .modal-close-btn:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    .video-wrapper-169 {
       position: relative;
-      padding-bottom: 56.25%; /* 16:9 */
+      padding-bottom: 56.25%;
       height: 0;
     }
 
-    .video-aspect iframe {
+    .video-wrapper-169 iframe {
       position: absolute;
       top: 0;
       left: 0;
@@ -562,247 +633,207 @@
       border: none;
     }
 
+    /* MODAL DE DETALLE DEL ESTADO */
+    .state-drawer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--bg-surface-elevated);
+      border-top: 1px solid var(--border-subtle);
+      border-radius: 24px 24px 0 0;
+      padding: 36px 28px 48px;
+      z-index: 2100;
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+      max-width: 800px;
+      margin: 0 auto;
+      right: 0;
+    }
+
+    .state-drawer.active {
+      transform: translateY(0);
+    }
+
+    .drawer-handle {
+      width: 40px;
+      height: 4px;
+      background: var(--border-focus);
+      border-radius: 2px;
+      margin: 0 auto 20px;
+    }
+
     /* FOOTER */
     footer {
-      max-width: 1180px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 60px 32px 80px;
+      padding: 40px 28px 60px;
+      border-top: 1px solid var(--border-subtle);
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: 12px;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border-subtle);
+      color: var(--text-dim);
     }
 
     /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .section-editorial, .vehicles-grid, .specs-grid {
+    @media (max-width: 768px) {
+      .hero-banner-container {
+        height: 85vh;
+      }
+      .poster-card {
+        flex: 0 0 78vw;
+      }
+      .editorial-section {
         grid-template-columns: 1fr;
-        gap: 36px;
+        gap: 28px;
       }
-      .states-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .metrics-bar {
-        gap: 24px;
-        flex-wrap: wrap;
+      .metric-strip {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
       }
       header {
-        padding: 0 20px;
+        padding: 0 16px;
       }
-      nav {
+      .carousel-header-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .carousel-arrows {
         display: none;
-      }
-    }
-
-    @media (max-width: 540px) {
-      .states-grid {
-        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- BARRA MINIMAL APPLE -->
+  <!-- BARRA DE NAVEGACIÓN -->
   <header>
-    <div class="brand-mark">
-      CHANGAN
-      <span class="brand-tag">PROYECTO PAÍS</span>
+    <div class="brand-group">
+      <div class="brand-title">CHANGAN</div>
+      <div class="brand-badge">PROYECTO PAÍS</div>
     </div>
-    <nav>
-      <a href="#vision">Visión</a>
-      <a href="#modelos">CS95 & CS55</a>
-      <a href="#destinos">16 Estados</a>
-      <a href="#produccion">Estándar Técnico</a>
-    </nav>
-    <button class="nav-cta" onclick="openReelModal()">Ver Reel</button>
-  </header>
-
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="campaign-eyebrow">Propuesta Estratégica Audiovisual</div>
-    <h1 class="hero-title">
-      <span>Tu Destino es Venezuela.</span>
-    </h1>
-    <p class="hero-lead">
-      16 estados recorridos en territorio real. Una narrativa visual cinematográfica concebida para validar la robustez y elevar el arraigo de Changan en el asfalto nacional.
-    </p>
-    <div class="hero-actions">
-      <button class="btn-primary" onclick="openReelModal()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+    <div class="nav-actions">
+      <button class="nav-btn-reel" onclick="openReel()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
           <path d="M8 5v14l11-7z"/>
         </svg>
-        Reproducir Reel Conceptual
+        Ver Reel Conceptual
       </button>
-      <a href="#destinos" class="btn-secondary" style="text-decoration: none;">Explorar los 16 Estados</a>
+    </div>
+  </header>
+
+  <!-- BANNER DE VIDEO AL INICIO -->
+  <section class="hero-banner-container">
+    <video class="hero-video-bg" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1920&q=80">
+      <source src="./banner.mp4" type="video/mp4">
+      <source src="banner.mp4" type="video/mp4">
+      <source src="banner.webm" type="video/webm">
+    </video>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="campaign-eyebrow">Validación de Territorio Real</div>
+      <h1 class="hero-heading">
+        <span>Tu Destino es Venezuela.</span>
+      </h1>
+      <p class="hero-subheading">
+        16 estados recorridos. Dos camionetas sometidas a la topografía real del país para demostrar solidez y arraigo genuino.
+      </p>
+      <div class="hero-buttons">
+        <button class="btn-solid-white" onclick="openReel()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          Reproducir Reel Conceptual
+        </button>
+        <a href="#catalogo" class="btn-outline-glass">
+          Explorar los 16 Estados ↓
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- MÉTRICAS DE ESCALA -->
-  <div class="metrics-bar">
-    <div class="metric-item">
-      <div class="metric-number">16</div>
-      <div class="metric-label">Estados de Venezuela</div>
+  <!-- CIFRAS DE CAMPAÑA -->
+  <div class="metric-strip">
+    <div class="metric-cell">
+      <span class="metric-val">16</span>
+      <span class="metric-label">Estados de Venezuela</span>
     </div>
-    <div class="metric-item">
-      <div class="metric-number">+8.400</div>
-      <div class="metric-label">Kilómetros de Asfalto Real</div>
+    <div class="metric-cell">
+      <span class="metric-val">+8.400</span>
+      <span class="metric-label">Kilómetros de Asfalto</span>
     </div>
-    <div class="metric-item">
-      <div class="metric-number">2</div>
-      <div class="metric-label">Vehículos en Prueba Extrema</div>
+    <div class="metric-cell">
+      <span class="metric-val">2</span>
+      <span class="metric-label">Camionetas en Ruta</span>
     </div>
-    <div class="metric-item">
-      <div class="metric-number">Cinema 4K</div>
-      <div class="metric-label">ProRes & Rango Dinámico</div>
+    <div class="metric-cell">
+      <span class="metric-val">Cinema 4K</span>
+      <span class="metric-label">Captura en Gran Formato</span>
     </div>
   </div>
 
-  <!-- MANIFIESTO EDITORIAL (NO VENTA, SINO SENTIDO DE PERTENENCIA) -->
-  <section class="section-editorial" id="vision">
+  <!-- SECCIÓN CARRUSEL TÁCTIL HORIZONTAL (TIPO FORD / NETFLIX) -->
+  <section class="carousel-section" id="catalogo">
+    <div class="carousel-header-wrapper">
+      <div class="carousel-title-group">
+        <h2>Ruta por Estados</h2>
+        <p>Desliza horizontalmente para conocer el vehículo y la prueba asignada a cada geografía.</p>
+      </div>
+      <div class="carousel-arrows">
+        <button class="carousel-arrow-btn" onclick="scrollCarousel(-1)" aria-label="Anterior">←</button>
+        <button class="carousel-arrow-btn" onclick="scrollCarousel(1)" aria-label="Siguiente">→</button>
+      </div>
+    </div>
+
+    <!-- PESTAÑAS FILTRO -->
+    <div class="tabs-bar">
+      <button class="tab-item active" onclick="setFilter('all', this)">Todos los Estados (16)</button>
+      <button class="tab-item" onclick="setFilter('CS95 AWD', this)">Changan CS95 AWD</button>
+      <button class="tab-item" onclick="setFilter('CS55 Plus', this)">Changan CS55 Plus Turbo</button>
+    </div>
+
+    <!-- CONTENEDOR DESLIZABLE HORIZONTAL -->
+    <div class="carousel-viewport" id="carouselTrack">
+      <!-- Se inyecta con JavaScript -->
+    </div>
+  </section>
+
+  <!-- MANIFIESTO EDITORIAL (ESTRATEGIA VS VENTA) -->
+  <section class="editorial-section">
     <div>
-      <div class="editorial-tag">El Criterio Estratégico</div>
-      <h2 class="editorial-h2">
-        La confianza en un vehículo no se promete con un eslogan. Se demuestra rodando.
-      </h2>
-    </div>
-    <div class="editorial-body">
-      <p>
-        El consumidor venezolano no juzga una camioneta en el showroom de un concesionario. La juzga cuando enfrenta los baches de la Troncal 9, las curvas exigentes de los Andes, la humedad implacable de la costa caribeña y las largas rectas calurosas del Llano.
-      </p>
-      <p>
-        <strong>Tu Destino es Venezuela</strong> no es un comercial publicitario convencional: es una expedición de validación mecánica y cinematográfica. Al poner a la CS95 y la CS55 a cruzar 16 estados sin artificios, transformamos a Changan en una marca que pertenece legítimamente al mapa del país.
-      </p>
-    </div>
-  </section>
-
-  <!-- MODELOS COMO PILARES DE RELATO -->
-  <section class="vehicles-section" id="modelos">
-    <div class="section-header-clean">
-      <h3>El Carácter de Cada Línea</h3>
-      <p>Dos arquitecturas pensadas para distintos ritmos y geografías del país.</p>
-    </div>
-
-    <div class="vehicles-grid">
-      <!-- CS95 -->
-      <div class="vehicle-card">
-        <div>
-          <div class="card-meta">Flagship • Gran Autonomía</div>
-          <h4 class="card-title">Changan CS95</h4>
-          <p class="card-desc">
-            Diseñada para la dominancia territorial. Tres filas de confort, tracción integral inteligente y aplomo estructural en pasos de montaña, páramo y rutas de larga distancia.
-          </p>
-          <div class="specs-pill-row">
-            <span class="specs-pill">2.0T Blue Core Turbo</span>
-            <span class="specs-pill">AWD Intelligent Drive</span>
-            <span class="specs-pill">Capacidad 7 Pasajeros</span>
-            <span class="specs-pill">Filtrado de Suspensión Pro</span>
-          </div>
-        </div>
-        <div class="card-visual">
-          <div class="visual-placeholder-text">
-            [ Frame Cinematográfico 4K: CS95 en las cumbres del Estado Mérida ]
-          </div>
-        </div>
-      </div>
-
-      <!-- CS55 -->
-      <div class="vehicle-card">
-        <div>
-          <div class="card-meta">Agilidad • Vanguardia Urbana & Ruta</div>
-          <h4 class="card-title">Changan CS55 Plus</h4>
-          <p class="card-desc">
-            Respuesta reactiva, centro de gravedad óptimo y eficiencia aerodinámica. El vehículo ágil concebido para alternar autopistas rápidas, avenidas metropolitanas y escapadas de fin de semana.
-          </p>
-          <div class="specs-pill-row">
-            <span class="specs-pill">1.5T Blue Core NE</span>
-            <span class="specs-pill">Transmisión 7DCT Bañada</span>
-            <span class="specs-pill">ADAS Nivel 2 Integrado</span>
-            <span class="specs-pill">Dinámica de Asfalto Rápido</span>
-          </div>
-        </div>
-        <div class="card-visual">
-          <div class="visual-placeholder-text">
-            [ Frame Cinematográfico 4K: CS55 Plus en curvas costeras de Choroní ]
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LOS 16 ESTADOS (MATRIZ INTERACTIVA) -->
-  <section class="states-section" id="destinos">
-    <div class="section-header-clean">
-      <h3>La Geografía del Proyecto: 16 Estados</h3>
-      <p>Cada parada valida una condición técnica del vehículo y exalta la majestuosidad paisajística de la región.</p>
-    </div>
-
-    <div class="states-filter-bar">
-      <button class="filter-btn active" onclick="filterStates('all')">Todos (16)</button>
-      <button class="filter-btn" onclick="filterStates('CS95')">Enfoque CS95</button>
-      <button class="filter-btn" onclick="filterStates('CS55')">Enfoque CS55 Plus</button>
-    </div>
-
-    <div class="states-grid" id="statesContainer">
-      <!-- Generado dinámicamente -->
-    </div>
-  </section>
-
-  <!-- ESTÁNDAR DE PRODUCCIÓN -->
-  <section class="tech-specs-section" id="produccion">
-    <div class="tech-specs-inner">
-      <div class="editorial-tag">Criterio Audiovisual</div>
-      <h3 style="font-size: 32px; font-weight: 700; letter-spacing: -0.025em;">
-        Estándar Cinematográfico sin Compromisos
+      <div class="campaign-eyebrow" style="margin-bottom: 8px;">Criterio Estratégico</div>
+      <h3 class="editorial-title">
+        La confianza mecánica se gana sobre el asfalto del país.
       </h3>
-      <div class="specs-grid">
-        <div class="spec-block">
-          <div class="spec-block-title">Óptica & Textura</div>
-          <p class="spec-block-desc">
-            Cámaras de sensor de gran formato y ópticas de cine para retener gradientes de cielo tropical sin quemar luces altas en metal.
-          </p>
-        </div>
-        <div class="spec-block">
-          <div class="spec-block-title">Perspectiva Aérea</div>
-          <p class="spec-block-desc">
-            Vuelos dinámicos de dron a ras de carretera para transmitir velocidad angular y la monumentalidad del entorno geográfico.
-          </p>
-        </div>
-        <div class="spec-block">
-          <div class="spec-block-title">Colorimetría Real</div>
-          <p class="spec-block-desc">
-            Look personalizado sin filtros genéricos: tonos tierra fieles, verdes profundos y el brillo original de los acabados de carrocería.
-          </p>
-        </div>
-        <div class="spec-block">
-          <div class="spec-block-title">Diseño Sonoro</div>
-          <p class="spec-block-desc">
-            Grabación binaural del contacto de neumático sobre el asfalto y aceleración de motor para proyectar solidez en cabina.
-          </p>
-        </div>
-      </div>
+    </div>
+    <div>
+      <p class="editorial-p">
+        El conductor venezolano no busca discursos de catálogo: busca la certeza de que su vehículo no fallará ante el bache imprevisto, la pendiente andina o el calor del mediodía llanero.
+      </p>
+      <p class="editorial-p">
+        Al llevar la <strong>Changan CS95 AWD</strong> y la <strong>Changan CS55 Plus Turbo</strong> a los 16 estados sin montajes de estudio, la marca deja de ser un invitado extranjero para convertirse en un compañero de ruta probado en casa.
+      </p>
     </div>
   </section>
 
-  <!-- FOOTER MINIMALISTA -->
+  <!-- FOOTER -->
   <footer>
-    <div>
-      © 2026 Propuesta de Campaña Audiovisual · Changan Venezuela
-    </div>
-    <div>
-      Dirección de Producción & Estrategia de Marca
-    </div>
+    <div>© 2026 Propuesta de Campaña Audiovisual · Changan Venezuela</div>
+    <div>Dirección de Producción & Cinematografía</div>
   </footer>
 
-  <!-- MODAL PARA EL REEL DE YOUTUBE -->
-  <div class="modal-overlay" id="videoModal" onclick="closeReelModal(event)">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <button class="modal-close-btn" onclick="closeReelModal(event)">✕</button>
-      <div class="video-aspect">
+  <!-- MODAL DE YOUTUBE -->
+  <div class="modal-backdrop" id="videoModal" onclick="closeReel(event)">
+    <div class="modal-window" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeReel(event)">✕</button>
+      <div class="video-wrapper-169">
         <iframe 
-          id="ytIframe"
+          id="youtubePlayer"
           src="" 
           title="Tu Destino es Venezuela | Reel Conceptual" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -812,83 +843,254 @@
     </div>
   </div>
 
-  <script>
-    // Enlace del Reel
-    const REEL_EMBED_URL = "https://www.youtube-nocookie.com/embed/MDSpoX-GL0Y?autoplay=1&rel=0";
+  <!-- DRAWER INFORMATIVO DE CADA ESTADO -->
+  <div class="state-drawer" id="stateDrawer">
+    <div class="drawer-handle"></div>
+    <div id="drawerContent"></div>
+    <div style="margin-top: 24px; text-align: right;">
+      <button class="btn-solid-white" onclick="closeDrawer()" style="padding: 8px 20px; font-size: 12px;">Cerrar Ficha</button>
+    </div>
+  </div>
 
-    // Data de los 16 estados seleccionados para la campaña
-    const statesData = [
-      { id: "01", name: "Mérida", vehicle: "CS95", test: "Ascenso de alta montaña y rendimiento térmico en el Páramo de la Culata." },
-      { id: "02", name: "Táchira", vehicle: "CS95", test: "Torque y control de tracción en curvas cerradas de cordillera andina." },
-      { id: "03", name: "Falcón", vehicle: "CS55", test: "Comportamiento aerodinámico frente a vientos cruzados en Médanos y costa." },
-      { id: "04", name: "Lara", vehicle: "CS55", test: "Dinámica de suspensión sobre pavimento irregular y atardeceres semiáridos." },
-      { id: "05", name: "Aragua", vehicle: "CS55", test: "Agilidad de frenado y dirección asistida en el descenso selvático hacia Choroní." },
-      { id: "06", name: "Carabobo", vehicle: "CS55", test: "Fluidez en nudos de autopista industrial y confort en tráfico denso." },
-      { id: "07", name: "Bolívar", vehicle: "CS95", test: "Estabilidad a alta velocidad en rectas kilométricas hacia la Gran Sabana." },
-      { id: "08", name: "Anzoátegui", vehicle: "CS55", test: "Resistencia térmica del motor en el trayecto costero y llanero." },
-      { id: "09", name: "Monagas", vehicle: "CS95", test: "Capacidad de carga en travesías familiares y suelo húmedo de montaña." },
-      { id: "10", name: "Sucre", vehicle: "CS55", test: "Conducción panorámica en cornisas marinas entre Mochima y Carúpano." },
-      { id: "11", name: "Guárico", vehicle: "CS95", test: "Autonomía en travesías sin fin y absorción de imperfecciones en el Llano central." },
-      { id: "12", name: "Barinas", vehicle: "CS95", test: "Tránsito en caminos mixtos de tierra y transición hacia el pie de monte." },
-      { id: "13", name: "Portuguesa", vehicle: "CS55", test: "Eficiencia de consumo sostenido en corredores agrícolas de alta velocidad." },
-      { id: "14", name: "Yaracuy", vehicle: "CS55", test: "Maniobrabilidad en pasos con lluvia y visibilidad optimizada en niebla." },
-      { id: "15", name: "Miranda", vehicle: "CS55", test: "Conectividad tecnológica y agilidad entre el litoral de Barlovento y Caracas." },
-      { id: "16", name: "Zulia", vehicle: "CS95", test: "Resistencia a temperaturas extremas y cruce imponente sobre el Puente del Lago." }
+  <script>
+    const YOUTUBE_URL = "https://www.youtube-nocookie.com/embed/MDSpoX-GL0Y?autoplay=1&rel=0";
+
+    // Data de los 16 Estados con el nombre de cada camioneta y fotos de referencia
+    const states = [
+      {
+        id: "01",
+        name: "Mérida",
+        vehicle: "Changan CS95 AWD",
+        type: "CS95 AWD",
+        img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80",
+        test: "Ascenso a gran altitud, frenado motor en bajadas pronunciadas y aclimatación en el Collado del Cóndor."
+      },
+      {
+        id: "02",
+        name: "Táchira",
+        vehicle: "Changan CS95 AWD",
+        type: "CS95 AWD",
+        img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
+        test: "Torque sostenido y confort de marcha en curvas estrechas de cordillera y calzadas empinadas."
+      },
+      {
+        id: "03",
+        name: "Falcón",
+        vehicle: "Changan CS55 Plus",
+        type: "CS55 Plus",
+        img: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80",
+        test: "Estabilidad con vientos cruzados sostenidos en el Istmo y paso seguro en las arenas de los Médanos."
+      },
+      {
+        id: "04",
+        name: "Lara",
+        vehicle: "Changan CS55 Plus",
+        type: "CS55 Plus",
+        img: "https://images.unsplash.com/photo-1508873696983-2df5293cb32b?auto=format&fit=crop&w=800&q=80",
+        test: "Capacidad de absorción de la suspensión en tramos semiáridos y contrastes de luz de atardecer crepuscular."
+      },
+      {
+        id: "05",
+        name: "Aragua",
+        vehicle: "Changan CS55 Plus",
+        type: "CS55 Plus",
+        img: "https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?auto=format&fit=crop&w=800&q=80",
+        test: "Agilidad del chasis en las cerradas curvas de selva nublada de Henri Pittier hacia la costa."
+      },
+      {
+        id: "06",
+        name: "Carabobo",
+        vehicle: "Changan CS55 Plus",
+        type: "CS55 Plus",
+        img: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80",
+        test: "Recuperación de aceleración y eficiencia térmica en autopistas interurbanas de alto flujo."
+      },
+      {
+        id: "07",
+        name: "Bolívar",
+        vehicle: "Changan CS95 AWD",
+        type: "CS95 AWD",
+        img: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80",
+        test: "Autonomía de crucero en rectas infinitas y tracción superior en la aproximación a La Gran Sabana."
+      },
+      {
+        id: "08",
+        name: "Anzoátegui",
+        vehicle: "Changan CS55 Plus",
+        type: "CS55 Plus",
+        img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+        test: "Rendimiento del aire acondicionado bajo temperaturas costeras extremas y dinamismo en la Troncal 9."
+      },
+      {
+        id: "09",
+        name: "Monagas",
+        vehicle: "Changan CS95 AWD",
+        type: "CS95 AWD",
+        img: "https://images.unsplash.com/photo-1511497584788-87676104235f?auto=format&fit=crop&w=800&q=80",
+        test: "Filtrado acústico en cabina y tracción en pavimento húmedo cruzando la zona de Caripe."
+      },
+      {
+        id: "10",
+        name: "Sucre",
+        vehicle: "Changan CS55 Plus",
+        type: "CS55 Plus",
+        img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+        test: "Frenado en bajadas con curvas de cornisa marina con vista directa al Golfo de Cariaco."
+      },
+      {
+        id: "11",
+        name: "Guárico",
+        vehicle: "Changan CS95 AWD",
+        type: "CS95 AWD",
+        img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80",
+        test: "Comportamiento del sistema de refrigeración en calor llanero de 38°C y solidez en largas rectas."
+      },
+      {
+        id: "12",
+        name: "Barinas",
+        vehicle: "Changan CS95 AWD",
+        type: "CS95 AWD",
+        img: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=800&q=80",
+        test: "Cruce de asfalto mixto a tierra compacta en la transición hacia el pie de monte andino."
+      },
+      {
+        id: "13",
+        name: "Portuguesa",
+        vehicle: "Changan CS55 Plus",
+        type: "CS55 Plus",
+        img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80",
+        test: "Eficiencia de combustible en trayectos planos de producción agrícola y control de crucero adaptativo."
+      },
+      {
+        id: "14",
+        name: "Yaracuy",
+        vehicle: "Changan CS55 Plus",
+        type: "CS55 Plus",
+        img: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80",
+        test: "Respuesta de los limpiaparabrisas automáticos y adherencia de llantas en tormentas tropicales repentinas."
+      },
+      {
+        id: "15",
+        name: "Miranda",
+        vehicle: "Changan CS55 Plus",
+        type: "CS55 Plus",
+        img: "https://images.unsplash.com/photo-1477959858617-67f30bc75b82?auto=format&fit=crop&w=800&q=80",
+        test: "Transición de la autopista Gran Mariscal de Ayacucho hacia el litoral costero de Higuerote."
+      },
+      {
+        id: "16",
+        name: "Zulia",
+        vehicle: "Changan CS95 AWD",
+        type: "CS95 AWD",
+        img: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=80",
+        test: "Presencia escénica y estabilidad estructural sobre los 8.6 kilómetros del Puente sobre el Lago de Maracaibo."
+      }
     ];
 
-    // Render de estados
-    const container = document.getElementById('statesContainer');
+    const track = document.getElementById('carouselTrack');
 
-    function renderStates(filter) {
-      container.innerHTML = '';
-      const list = filter === 'all' 
-        ? statesData 
-        : statesData.filter(s => s.vehicle.includes(filter));
+    function renderCarousel(filterType = 'all') {
+      track.innerHTML = '';
+      const filtered = filterType === 'all' 
+        ? states 
+        : states.filter(s => s.type === filterType);
 
-      list.forEach(item => {
+      filtered.forEach(item => {
+        const isCs95 = item.type === 'CS95 AWD';
         const card = document.createElement('div');
-        card.className = 'state-card';
+        card.className = 'poster-card';
+        card.onclick = () => openDrawer(item);
+
         card.innerHTML = `
-          <div>
-            <span class="state-num">${item.id} / 16</span>
-            <div class="state-name">${item.name}</div>
-            <div class="state-vehicle-tag">Enfoque: Changan ${item.vehicle}</div>
+          <img class="poster-image" src="${item.img}" alt="${item.name}" loading="lazy">
+          <div class="poster-gradient"></div>
+          
+          <div class="poster-top-bar">
+            <span class="vehicle-badge-ford ${isCs95 ? 'cs95' : 'cs55'}">
+              ${item.vehicle}
+            </span>
+            <span class="state-index">${item.id} / 16</span>
           </div>
-          <div class="state-route-highlight">${item.test}</div>
+
+          <div class="poster-bottom-content">
+            <div class="poster-model-tag ${isCs95 ? '' : 'cs55'}">
+              ${item.vehicle}
+            </div>
+            <div class="poster-title-row">
+              <span class="poster-state-name">${item.name}</span>
+              <div class="poster-arrow-circle">→</div>
+            </div>
+            <p class="poster-test-desc">${item.test}</p>
+          </div>
         `;
-        container.appendChild(card);
+        track.appendChild(card);
       });
     }
 
-    function filterStates(type) {
-      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-      renderStates(type);
+    function scrollCarousel(direction) {
+      const scrollAmount = window.innerWidth * 0.45;
+      track.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
     }
 
-    // Modal Control
-    const modal = document.getElementById('videoModal');
-    const iframe = document.getElementById('ytIframe');
+    function setFilter(type, btn) {
+      document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      renderCarousel(type);
+    }
 
-    function openReelModal() {
-      iframe.src = REEL_EMBED_URL;
-      modal.classList.add('open');
+    // Modal de Video (Reel de YouTube)
+    const videoModal = document.getElementById('videoModal');
+    const youtubePlayer = document.getElementById('youtubePlayer');
+
+    function openReel() {
+      youtubePlayer.src = YOUTUBE_URL;
+      videoModal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
-    function closeReelModal(e) {
-      iframe.src = '';
-      modal.classList.remove('open');
+    function closeReel(e) {
+      youtubePlayer.src = '';
+      videoModal.classList.remove('active');
       document.body.style.overflow = 'auto';
     }
 
-    // Escape key listener
+    // Drawer de Estado
+    const stateDrawer = document.getElementById('stateDrawer');
+    const drawerContent = document.getElementById('drawerContent');
+
+    function openDrawer(item) {
+      drawerContent.innerHTML = `
+        <div style="font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-blue); font-weight: 700; margin-bottom: 6px;">
+          Estado ${item.id} de 16
+        </div>
+        <h3 style="font-size: 32px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 4px;">
+          ${item.name}
+        </h3>
+        <div style="font-size: 14px; color: #fff; font-weight: 600; margin-bottom: 16px;">
+          Vehículo Asignado: <span style="color: var(--accent-blue);">${item.vehicle}</span>
+        </div>
+        <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">
+          <strong>Validación Cinematográfica en Asfalto:</strong><br>
+          ${item.test}
+        </p>
+      `;
+      stateDrawer.classList.add('active');
+    }
+
+    function closeDrawer() {
+      stateDrawer.classList.remove('active');
+    }
+
+    // Cerrar con Escape
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeReelModal();
+      if (e.key === 'Escape') {
+        closeReel();
+        closeDrawer();
+      }
     });
 
-    // Iniciar con todos los estados
-    renderStates('all');
+    // Iniciar carrusel al cargar
+    renderCarousel('all');
   </script>
 </body>
 </html>
