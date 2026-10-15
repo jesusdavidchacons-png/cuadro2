@@ -1,62 +1,894 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
-    <style>
-      #overlay {
-        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.7); display: flex; flex-direction: column;
-        justify-content: center; align-items: center; z-index: 1000;
-        gap: 20px;
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tu Destino es Venezuela | Changan CS95 & CS55 Plus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-main: #060709;
+      --bg-surface: #0e1116;
+      --bg-surface-elevated: #161b22;
+      --text-primary: #f0f3f6;
+      --text-secondary: #8b949e;
+      --text-muted: #484f58;
+      --accent-blue: #2f81f7;
+      --accent-silver: #d0d7de;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.2);
+      --glass: rgba(14, 17, 22, 0.75);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* NAV APPLE MINIMAL */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 48px;
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    .brand-mark {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-tag {
+      color: var(--accent-blue);
+      font-weight: 500;
+      font-size: 10px;
+      padding: 2px 6px;
+      background: rgba(47, 129, 247, 0.12);
+      border-radius: 4px;
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-cta {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      padding: 6px 14px;
+      border-radius: 980px;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .nav-cta:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: var(--border-hover);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 94vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 24px 60px;
+      position: relative;
+      background: radial-gradient(circle at 50% 30%, rgba(47, 129, 247, 0.08) 0%, transparent 60%);
+    }
+
+    .campaign-eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--accent-blue);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-size: clamp(42px, 6.5vw, 84px);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+      max-width: 980px;
+      margin-bottom: 24px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(180deg, #FFFFFF 30%, rgba(255,255,255,0.45) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-lead {
+      font-size: clamp(16px, 1.8vw, 20px);
+      color: var(--text-secondary);
+      max-width: 680px;
+      font-weight: 400;
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--text-primary);
+      color: var(--bg-main);
+      border: none;
+      padding: 12px 26px;
+      border-radius: 980px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      padding: 12px 24px;
+      border-radius: 980px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--border-hover);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    /* METRICS STRIP */
+    .metrics-bar {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      padding: 38px 24px;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(14, 17, 22, 0.4);
+    }
+
+    .metric-item {
+      text-align: center;
+    }
+
+    .metric-number {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+    }
+
+    .metric-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* EDITORIAL SECTION */
+    .section-editorial {
+      max-width: 1180px;
+      margin: 120px auto;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .editorial-tag {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .editorial-h2 {
+      font-size: clamp(30px, 3.8vw, 48px);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      font-weight: 700;
+    }
+
+    .editorial-body {
+      color: var(--text-secondary);
+      font-size: 16px;
+      line-height: 1.8;
+      font-weight: 400;
+    }
+
+    .editorial-body p + p {
+      margin-top: 20px;
+    }
+
+    /* PRODUCT TILES (APPLE STYLE) */
+    .vehicles-section {
+      max-width: 1280px;
+      margin: 0 auto 120px;
+      padding: 0 32px;
+    }
+
+    .section-header-clean {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 56px;
+    }
+
+    .section-header-clean h3 {
+      font-size: clamp(28px, 3vw, 42px);
+      letter-spacing: -0.03em;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .section-header-clean p {
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+
+    .vehicles-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .vehicle-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 44px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 540px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+
+    .vehicle-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .card-meta {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 10px;
+    }
+
+    .card-desc {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 420px;
+      margin-bottom: 24px;
+    }
+
+    .specs-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 30px;
+    }
+
+    .specs-pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: 980px;
+      color: var(--text-secondary);
+    }
+
+    .card-visual {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 220px;
+      background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+      border-radius: 12px;
+      border: 1px dashed rgba(255,255,255,0.06);
+    }
+
+    .visual-placeholder-text {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* 16 STATES SHOWCASE */
+    .states-section {
+      max-width: 1280px;
+      margin: 0 auto 130px;
+      padding: 0 32px;
+    }
+
+    .states-filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      padding: 8px 16px;
+      border-radius: 980px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .states-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .state-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 22px 20px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 180px;
+    }
+
+    .state-card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+      background: var(--bg-surface-elevated);
+    }
+
+    .state-num {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .state-name {
+      font-size: 19px;
+      font-weight: 600;
+      margin: 6px 0 2px;
+      letter-spacing: -0.02em;
+    }
+
+    .state-vehicle-tag {
+      font-size: 11px;
+      color: var(--accent-blue);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .state-route-highlight {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* PRODUCTION STANDARDS */
+    .tech-specs-section {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 100px 32px;
+    }
+
+    .tech-specs-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-top: 50px;
+    }
+
+    .spec-block {
+      border-left: 1px solid var(--border-subtle);
+      padding-left: 20px;
+    }
+
+    .spec-block-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-silver);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .spec-block-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* MODAL VIDEO */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 960px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      font-size: 16px;
+    }
+
+    .video-aspect {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+    }
+
+    .video-aspect iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* FOOTER */
+    footer {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 60px 32px 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .section-editorial, .vehicles-grid, .specs-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
       }
-      button { padding: 20px 40px; font-size: 20px; cursor: pointer; border-radius: 10px; border: none; background: white; }
-      #btn-ar { background: #4285f4; color: white; }
-    </style>
-  </head>
-  <body>
-    <div id="overlay">
-      <button id="btn-start">VER MI CUADRO (Cámara estándar)</button>
-      <button id="btn-ar">AR (Realidad Mixta Quest 3)</button>
+      .states-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .metrics-bar {
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      header {
+        padding: 0 20px;
+      }
+      nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .states-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA MINIMAL APPLE -->
+  <header>
+    <div class="brand-mark">
+      CHANGAN
+      <span class="brand-tag">PROYECTO PAÍS</span>
+    </div>
+    <nav>
+      <a href="#vision">Visión</a>
+      <a href="#modelos">CS95 & CS55</a>
+      <a href="#destinos">16 Estados</a>
+      <a href="#produccion">Estándar Técnico</a>
+    </nav>
+    <button class="nav-cta" onclick="openReelModal()">Ver Reel</button>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="campaign-eyebrow">Propuesta Estratégica Audiovisual</div>
+    <h1 class="hero-title">
+      <span>Tu Destino es Venezuela.</span>
+    </h1>
+    <p class="hero-lead">
+      16 estados recorridos en territorio real. Una narrativa visual cinematográfica concebida para validar la robustez y elevar el arraigo de Changan en el asfalto nacional.
+    </p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="openReelModal()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        Reproducir Reel Conceptual
+      </button>
+      <a href="#destinos" class="btn-secondary" style="text-decoration: none;">Explorar los 16 Estados</a>
+    </div>
+  </section>
+
+  <!-- MÉTRICAS DE ESCALA -->
+  <div class="metrics-bar">
+    <div class="metric-item">
+      <div class="metric-number">16</div>
+      <div class="metric-label">Estados de Venezuela</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-number">+8.400</div>
+      <div class="metric-label">Kilómetros de Asfalto Real</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-number">2</div>
+      <div class="metric-label">Vehículos en Prueba Extrema</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-number">Cinema 4K</div>
+      <div class="metric-label">ProRes & Rango Dinámico</div>
+    </div>
+  </div>
+
+  <!-- MANIFIESTO EDITORIAL (NO VENTA, SINO SENTIDO DE PERTENENCIA) -->
+  <section class="section-editorial" id="vision">
+    <div>
+      <div class="editorial-tag">El Criterio Estratégico</div>
+      <h2 class="editorial-h2">
+        La confianza en un vehículo no se promete con un eslogan. Se demuestra rodando.
+      </h2>
+    </div>
+    <div class="editorial-body">
+      <p>
+        El consumidor venezolano no juzga una camioneta en el showroom de un concesionario. La juzga cuando enfrenta los baches de la Troncal 9, las curvas exigentes de los Andes, la humedad implacable de la costa caribeña y las largas rectas calurosas del Llano.
+      </p>
+      <p>
+        <strong>Tu Destino es Venezuela</strong> no es un comercial publicitario convencional: es una expedición de validación mecánica y cinematográfica. Al poner a la CS95 y la CS55 a cruzar 16 estados sin artificios, transformamos a Changan en una marca que pertenece legítimamente al mapa del país.
+      </p>
+    </div>
+  </section>
+
+  <!-- MODELOS COMO PILARES DE RELATO -->
+  <section class="vehicles-section" id="modelos">
+    <div class="section-header-clean">
+      <h3>El Carácter de Cada Línea</h3>
+      <p>Dos arquitecturas pensadas para distintos ritmos y geografías del país.</p>
     </div>
 
-    <a-scene 
-      mindar-image="imageTargetSrc: ./tu_cuadro.mind; autoStart: false; uiLoading: no; uiError: no; uiScanning: no;" 
-      webxr="requiredFeatures: hit-test, passthrough;"
-      embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: true" device-orientation-permission-ui="enabled: false">
-      
-      <a-assets>
-        <video id="vid" src="./tu_video.mp4" loop="true" playsinline crossorigin="anonymous"></video>
-      </a-assets>
+    <div class="vehicles-grid">
+      <!-- CS95 -->
+      <div class="vehicle-card">
+        <div>
+          <div class="card-meta">Flagship • Gran Autonomía</div>
+          <h4 class="card-title">Changan CS95</h4>
+          <p class="card-desc">
+            Diseñada para la dominancia territorial. Tres filas de confort, tracción integral inteligente y aplomo estructural en pasos de montaña, páramo y rutas de larga distancia.
+          </p>
+          <div class="specs-pill-row">
+            <span class="specs-pill">2.0T Blue Core Turbo</span>
+            <span class="specs-pill">AWD Intelligent Drive</span>
+            <span class="specs-pill">Capacidad 7 Pasajeros</span>
+            <span class="specs-pill">Filtrado de Suspensión Pro</span>
+          </div>
+        </div>
+        <div class="card-visual">
+          <div class="visual-placeholder-text">
+            [ Frame Cinematográfico 4K: CS95 en las cumbres del Estado Mérida ]
+          </div>
+        </div>
+      </div>
 
-      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+      <!-- CS55 -->
+      <div class="vehicle-card">
+        <div>
+          <div class="card-meta">Agilidad • Vanguardia Urbana & Ruta</div>
+          <h4 class="card-title">Changan CS55 Plus</h4>
+          <p class="card-desc">
+            Respuesta reactiva, centro de gravedad óptimo y eficiencia aerodinámica. El vehículo ágil concebido para alternar autopistas rápidas, avenidas metropolitanas y escapadas de fin de semana.
+          </p>
+          <div class="specs-pill-row">
+            <span class="specs-pill">1.5T Blue Core NE</span>
+            <span class="specs-pill">Transmisión 7DCT Bañada</span>
+            <span class="specs-pill">ADAS Nivel 2 Integrado</span>
+            <span class="specs-pill">Dinámica de Asfalto Rápido</span>
+          </div>
+        </div>
+        <div class="card-visual">
+          <div class="visual-placeholder-text">
+            [ Frame Cinematográfico 4K: CS55 Plus en curvas costeras de Choroní ]
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <a-entity mindar-image-target="targetIndex: 0">
-        <a-video src="#vid" width="1" height="0.6" position="0 0 0"></a-video>
-      </a-entity>
-    </a-scene>
+  <!-- LOS 16 ESTADOS (MATRIZ INTERACTIVA) -->
+  <section class="states-section" id="destinos">
+    <div class="section-header-clean">
+      <h3>La Geografía del Proyecto: 16 Estados</h3>
+      <p>Cada parada valida una condición técnica del vehículo y exalta la majestuosidad paisajística de la región.</p>
+    </div>
 
-    <script>
-      const scene = document.querySelector('a-scene');
-      const video = document.querySelector('#vid');
+    <div class="states-filter-bar">
+      <button class="filter-btn active" onclick="filterStates('all')">Todos (16)</button>
+      <button class="filter-btn" onclick="filterStates('CS95')">Enfoque CS95</button>
+      <button class="filter-btn" onclick="filterStates('CS55')">Enfoque CS55 Plus</button>
+    </div>
 
-      // Botón estándar
-      document.querySelector('#btn-start').addEventListener('click', () => {
-        document.querySelector('#overlay').style.display = 'none';
-        scene.mindarImageSystem.start();
+    <div class="states-grid" id="statesContainer">
+      <!-- Generado dinámicamente -->
+    </div>
+  </section>
+
+  <!-- ESTÁNDAR DE PRODUCCIÓN -->
+  <section class="tech-specs-section" id="produccion">
+    <div class="tech-specs-inner">
+      <div class="editorial-tag">Criterio Audiovisual</div>
+      <h3 style="font-size: 32px; font-weight: 700; letter-spacing: -0.025em;">
+        Estándar Cinematográfico sin Compromisos
+      </h3>
+      <div class="specs-grid">
+        <div class="spec-block">
+          <div class="spec-block-title">Óptica & Textura</div>
+          <p class="spec-block-desc">
+            Cámaras de sensor de gran formato y ópticas de cine para retener gradientes de cielo tropical sin quemar luces altas en metal.
+          </p>
+        </div>
+        <div class="spec-block">
+          <div class="spec-block-title">Perspectiva Aérea</div>
+          <p class="spec-block-desc">
+            Vuelos dinámicos de dron a ras de carretera para transmitir velocidad angular y la monumentalidad del entorno geográfico.
+          </p>
+        </div>
+        <div class="spec-block">
+          <div class="spec-block-title">Colorimetría Real</div>
+          <p class="spec-block-desc">
+            Look personalizado sin filtros genéricos: tonos tierra fieles, verdes profundos y el brillo original de los acabados de carrocería.
+          </p>
+        </div>
+        <div class="spec-block">
+          <div class="spec-block-title">Diseño Sonoro</div>
+          <p class="spec-block-desc">
+            Grabación binaural del contacto de neumático sobre el asfalto y aceleración de motor para proyectar solidez en cabina.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER MINIMALISTA -->
+  <footer>
+    <div>
+      © 2026 Propuesta de Campaña Audiovisual · Changan Venezuela
+    </div>
+    <div>
+      Dirección de Producción & Estrategia de Marca
+    </div>
+  </footer>
+
+  <!-- MODAL PARA EL REEL DE YOUTUBE -->
+  <div class="modal-overlay" id="videoModal" onclick="closeReelModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeReelModal(event)">✕</button>
+      <div class="video-aspect">
+        <iframe 
+          id="ytIframe"
+          src="" 
+          title="Tu Destino es Venezuela | Reel Conceptual" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Enlace del Reel
+    const REEL_EMBED_URL = "https://www.youtube-nocookie.com/embed/MDSpoX-GL0Y?autoplay=1&rel=0";
+
+    // Data de los 16 estados seleccionados para la campaña
+    const statesData = [
+      { id: "01", name: "Mérida", vehicle: "CS95", test: "Ascenso de alta montaña y rendimiento térmico en el Páramo de la Culata." },
+      { id: "02", name: "Táchira", vehicle: "CS95", test: "Torque y control de tracción en curvas cerradas de cordillera andina." },
+      { id: "03", name: "Falcón", vehicle: "CS55", test: "Comportamiento aerodinámico frente a vientos cruzados en Médanos y costa." },
+      { id: "04", name: "Lara", vehicle: "CS55", test: "Dinámica de suspensión sobre pavimento irregular y atardeceres semiáridos." },
+      { id: "05", name: "Aragua", vehicle: "CS55", test: "Agilidad de frenado y dirección asistida en el descenso selvático hacia Choroní." },
+      { id: "06", name: "Carabobo", vehicle: "CS55", test: "Fluidez en nudos de autopista industrial y confort en tráfico denso." },
+      { id: "07", name: "Bolívar", vehicle: "CS95", test: "Estabilidad a alta velocidad en rectas kilométricas hacia la Gran Sabana." },
+      { id: "08", name: "Anzoátegui", vehicle: "CS55", test: "Resistencia térmica del motor en el trayecto costero y llanero." },
+      { id: "09", name: "Monagas", vehicle: "CS95", test: "Capacidad de carga en travesías familiares y suelo húmedo de montaña." },
+      { id: "10", name: "Sucre", vehicle: "CS55", test: "Conducción panorámica en cornisas marinas entre Mochima y Carúpano." },
+      { id: "11", name: "Guárico", vehicle: "CS95", test: "Autonomía en travesías sin fin y absorción de imperfecciones en el Llano central." },
+      { id: "12", name: "Barinas", vehicle: "CS95", test: "Tránsito en caminos mixtos de tierra y transición hacia el pie de monte." },
+      { id: "13", name: "Portuguesa", vehicle: "CS55", test: "Eficiencia de consumo sostenido en corredores agrícolas de alta velocidad." },
+      { id: "14", name: "Yaracuy", vehicle: "CS55", test: "Maniobrabilidad en pasos con lluvia y visibilidad optimizada en niebla." },
+      { id: "15", name: "Miranda", vehicle: "CS55", test: "Conectividad tecnológica y agilidad entre el litoral de Barlovento y Caracas." },
+      { id: "16", name: "Zulia", vehicle: "CS95", test: "Resistencia a temperaturas extremas y cruce imponente sobre el Puente del Lago." }
+    ];
+
+    // Render de estados
+    const container = document.getElementById('statesContainer');
+
+    function renderStates(filter) {
+      container.innerHTML = '';
+      const list = filter === 'all' 
+        ? statesData 
+        : statesData.filter(s => s.vehicle.includes(filter));
+
+      list.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'state-card';
+        card.innerHTML = `
+          <div>
+            <span class="state-num">${item.id} / 16</span>
+            <div class="state-name">${item.name}</div>
+            <div class="state-vehicle-tag">Enfoque: Changan ${item.vehicle}</div>
+          </div>
+          <div class="state-route-highlight">${item.test}</div>
+        `;
+        container.appendChild(card);
       });
+    }
 
-      // Botón AR para Quest 3 (Passthrough)
-      document.querySelector('#btn-ar').addEventListener('click', () => {
-        document.querySelector('#overlay').style.display = 'none';
-        scene.enterAR(); // Activa WebXR AR
-        scene.mindarImageSystem.start();
-      });
+    function filterStates(type) {
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      renderStates(type);
+    }
 
-      scene.addEventListener('click', () => {
-        video.play();
-      });
-    </script>
-  </body>
+    // Modal Control
+    const modal = document.getElementById('videoModal');
+    const iframe = document.getElementById('ytIframe');
+
+    function openReelModal() {
+      iframe.src = REEL_EMBED_URL;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeReelModal(e) {
+      iframe.src = '';
+      modal.classList.remove('open');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Escape key listener
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeReelModal();
+    });
+
+    // Iniciar con todos los estados
+    renderStates('all');
+  </script>
+</body>
 </html>
