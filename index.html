@@ -21,7 +21,7 @@
       --accent-teal: #2ea043;
       --border-subtle: rgba(255, 255, 255, 0.08);
       --border-focus: rgba(255, 255, 255, 0.25);
-      --nav-glass: rgba(5, 6, 8, 0.82);
+      --nav-glass: rgba(5, 6, 8, 0.85);
     }
 
     * {
@@ -40,7 +40,7 @@
       line-height: 1.45;
     }
 
-    /* HEADER CON LOGO OFICIAL */
+    /* HEADER MINIMAL CON LOGO */
     header {
       position: fixed;
       top: 0;
@@ -284,7 +284,7 @@
       margin-top: 2px;
     }
 
-    /* CARRUSEL TÁCTIL ESTILO NETFLIX / FORD */
+    /* SECCIÓN CARRUSEL TÁCTIL HORIZONTAL */
     .carousel-section {
       padding: 80px 0 100px;
       position: relative;
@@ -370,7 +370,7 @@
       border-color: rgba(255, 255, 255, 0.3);
     }
 
-    /* VIEWPORT HORIZONTAL */
+    /* CARRUSEL TÁCTIL HORIZONTAL (NETFLIX STYLE) */
     .carousel-viewport {
       display: flex;
       gap: 16px;
@@ -385,9 +385,9 @@
       display: none;
     }
 
-    /* CARD POSTER VERTICAL */
+    /* TARJETA POSTER VERTICAL */
     .poster-card {
-      flex: 0 0 clamp(280px, 28vw, 360px);
+      flex: 0 0 clamp(290px, 29vw, 370px);
       aspect-ratio: 9 / 14;
       border-radius: 18px;
       position: relative;
@@ -405,28 +405,28 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
     }
 
-    /* Estado Especial Activo (Barquisimeto) */
+    /* Estado Especial Activo (Lara con video banner2) */
     .poster-card.is-active {
-      border: 1.5px solid rgba(47, 129, 247, 0.6);
-      box-shadow: 0 10px 30px rgba(47, 129, 247, 0.15);
+      border: 1.5px solid rgba(47, 129, 247, 0.65);
+      box-shadow: 0 10px 30px rgba(47, 129, 247, 0.2);
     }
 
     .poster-card.is-active:hover {
       border-color: var(--accent-blue);
-      box-shadow: 0 20px 45px rgba(47, 129, 247, 0.35);
+      box-shadow: 0 20px 45px rgba(47, 129, 247, 0.45);
     }
 
-    /* Estados con Próximamente */
-    .poster-card.is-coming-soon {
-      opacity: 0.72;
-      filter: saturate(0.85);
+    /* Fondo de Video en la tarjeta de Lara */
+    .card-video-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
     }
 
-    .poster-card.is-coming-soon:hover {
-      opacity: 0.95;
-      filter: saturate(1);
-    }
-
+    /* Imagen estática para los demás */
     .poster-image {
       position: absolute;
       inset: 0;
@@ -434,6 +434,8 @@
       height: 100%;
       object-fit: cover;
       transition: transform 0.6s ease;
+      filter: brightness(0.65) contrast(1.1);
+      z-index: 1;
     }
 
     .poster-card:hover .poster-image {
@@ -444,9 +446,9 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(180deg, 
-        rgba(5, 6, 8, 0.6) 0%, 
-        rgba(5, 6, 8, 0.05) 35%, 
-        rgba(5, 6, 8, 0.45) 65%,
+        rgba(5, 6, 8, 0.55) 0%, 
+        rgba(5, 6, 8, 0.1) 30%, 
+        rgba(5, 6, 8, 0.5) 65%,
         rgba(5, 6, 8, 0.96) 100%);
       z-index: 2;
     }
@@ -488,7 +490,7 @@
       color: #7ee787;
     }
 
-    .status-badge {
+    .status-badge-top {
       font-size: 9px;
       font-weight: 800;
       letter-spacing: 0.08em;
@@ -496,20 +498,76 @@
       border-radius: 980px;
       text-transform: uppercase;
       white-space: nowrap;
-    }
-
-    .status-badge.available {
       background: rgba(47, 129, 247, 0.2);
       border: 1px solid rgba(47, 129, 247, 0.5);
       color: #79c0ff;
     }
 
-    .status-badge.soon {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: var(--text-muted);
+    /* ==============================================================
+       CARTEL MONUMENTAL "PRÓXIMAMENTE" AL CENTRO (EXPERIENCIA ANSIEDAD)
+       ============================================================== */
+    .center-teaser-overlay {
+      position: absolute;
+      top: 44%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      width: 86%;
+      text-align: center;
+      pointer-events: none;
     }
 
+    .badge-lock-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 13px;
+      margin-bottom: 4px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+    }
+
+    .giant-coming-soon {
+      font-size: clamp(14px, 1.4vw, 17px);
+      font-weight: 800;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #ffffff;
+      background: rgba(10, 12, 16, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 10px 20px;
+      border-radius: 980px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+      width: 100%;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .poster-card:hover .giant-coming-soon {
+      border-color: rgba(255, 255, 255, 0.45);
+      transform: scale(1.03);
+    }
+
+    .teaser-subtext {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 600;
+    }
+
+    /* CONTENIDO INFERIOR */
     .poster-bottom-content {
       position: absolute;
       bottom: 22px;
@@ -676,7 +734,7 @@
       border: none;
     }
 
-    /* MODAL / DRAWER INTERACTIVO PARA ESTADOS (CON BANNER2 PARA BARQUISIMETO) */
+    /* MODAL / VISOR DE ESTADO */
     .state-drawer {
       position: fixed;
       inset: 0;
@@ -777,7 +835,7 @@
 </head>
 <body>
 
-  <!-- HEADER CON EL LOGO SOLICITADO -->
+  <!-- HEADER CON EL LOGO -->
   <header>
     <div class="brand-group">
       <img 
@@ -854,7 +912,7 @@
     <div class="carousel-header-wrapper">
       <div class="carousel-title-group">
         <h2>Ruta por Estados</h2>
-        <p>Desliza horizontalmente. Barquisimeto disponible para previsualización inmediata; los demás estados en postproducción.</p>
+        <p>Desliza horizontalmente. Estado Lara en reproducción en vivo; los siguientes episodios en etapa de postproducción.</p>
       </div>
       <div class="carousel-arrows">
         <button class="carousel-arrow-btn" onclick="scrollCarousel(-1)" aria-label="Anterior">←</button>
@@ -871,7 +929,7 @@
 
     <!-- CONTENEDOR DESLIZABLE HORIZONTAL -->
     <div class="carousel-viewport" id="carouselTrack">
-      <!-- Se inyecta con JavaScript -->
+      <!-- Inyectado dinámicamente con JS -->
     </div>
   </section>
 
@@ -915,15 +973,15 @@
     </div>
   </div>
 
-  <!-- MODAL / VISOR DE ESTADO (REPRODUCE BANNER2 PARA BARQUISIMETO) -->
+  <!-- MODAL / VISOR DE ESTADO -->
   <div class="state-drawer" id="stateDrawer" onclick="closeDrawer(event)">
     <div class="drawer-card" onclick="event.stopPropagation()">
       <button class="modal-close-btn" onclick="closeDrawer(event)" style="top: 12px; right: 12px;">✕</button>
       <div id="drawerVideoArea" class="drawer-video-container">
-        <!-- Inyección dinámica de video o imagen -->
+        <!-- Inyección dinámica -->
       </div>
       <div class="drawer-body" id="drawerBody">
-        <!-- Inyección dinámica de textos -->
+        <!-- Inyección dinámica -->
       </div>
     </div>
   </div>
@@ -931,17 +989,17 @@
   <script>
     const YOUTUBE_URL = "https://www.youtube-nocookie.com/embed/MDSpoX-GL0Y?autoplay=1&rel=0";
 
-    // 16 ESTADOS: Barquisimeto de 1ro (DISPONIBLE con banner2), Aragua de 2do, y los demás en Próximamente
+    // 16 Estados: Lara 1º (con video banner2 en vivo), Aragua 2º, y los demás en Próximamente
     const states = [
       {
         id: "01",
-        name: "Lara (Barquisimeto)",
+        name: "Lara",
         available: true,
         vehicle: "Changan CS55 Plus Turbo",
         type: "CS55 Plus",
-        videoFile: "banner2", // Tu archivo banner2.mp4 o banner2.gif
-        img: "https://images.unsplash.com/photo-1508873696983-2df5293cb32b?auto=format&fit=crop&w=800&q=80",
-        test: "Dinámica y absorción de suspensión en los bulevares crepusculares y asfalto semiárido de Barquisimeto."
+        hasVideoBanner: true,
+        posterImg: "https://images.unsplash.com/photo-1508873696983-2df5293cb32b?auto=format&fit=crop&w=800&q=80",
+        test: "Dinámica y absorción de suspensión en los bulevares crepusculares y asfalto semiárido de Lara."
       },
       {
         id: "02",
@@ -1091,22 +1149,47 @@
       filtered.forEach(item => {
         const isCs95 = item.type === 'CS95 AWD';
         const card = document.createElement('div');
-        card.className = `poster-card ${item.available ? 'is-active' : 'is-coming-soon'}`;
+        card.className = `poster-card ${item.available ? 'is-active' : ''}`;
         card.onclick = () => openStateDetails(item);
 
-        const statusLabel = item.available 
-          ? '<span class="status-badge available">● Disponible</span>' 
-          : '<span class="status-badge soon">🔒 Próximamente</span>';
+        // Renderizado del Fondo: Video en vivo para Lara, imagen para los demás
+        let mediaHtml = '';
+        if (item.hasVideoBanner) {
+          mediaHtml = `
+            <video class="card-video-bg" autoplay muted loop playsinline poster="${item.posterImg}">
+              <source src="./banner2.mp4" type="video/mp4">
+              <source src="banner2.mp4" type="video/mp4">
+              <source src="./banner2.webm" type="video/webm">
+              <img src="./banner2.gif" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;">
+            </video>
+          `;
+        } else {
+          mediaHtml = `<img class="poster-image" src="${item.img}" alt="${item.name}" loading="lazy">`;
+        }
+
+        // Cartel Monumental en el centro para los no disponibles
+        const centerTeaser = !item.available ? `
+          <div class="center-teaser-overlay">
+            <div class="badge-lock-icon">🔒</div>
+            <div class="giant-coming-soon">PRÓXIMAMENTE</div>
+            <span class="teaser-subtext">Episodio en Postproducción</span>
+          </div>
+        ` : '';
+
+        const topBadge = item.available 
+          ? '<span class="status-badge-top">● En Emisión</span>' 
+          : '';
 
         card.innerHTML = `
-          <img class="poster-image" src="${item.img}" alt="${item.name}" loading="lazy">
+          ${mediaHtml}
           <div class="poster-gradient"></div>
+          ${centerTeaser}
           
           <div class="poster-top-bar">
             <span class="vehicle-badge-ford ${isCs95 ? 'cs95' : 'cs55'}">
               ${item.vehicle}
             </span>
-            ${statusLabel}
+            ${topBadge}
           </div>
 
           <div class="poster-bottom-content">
@@ -1151,25 +1234,25 @@
       document.body.style.overflow = 'auto';
     }
 
-    // Drawer / Visor de Estado (Reproduce banner2 para Barquisimeto)
+    // Modal / Drawer de Detalle
     const stateDrawer = document.getElementById('stateDrawer');
     const drawerVideoArea = document.getElementById('drawerVideoArea');
     const drawerBody = document.getElementById('drawerBody');
 
     function openStateDetails(item) {
       if (item.available) {
-        // Barquisimeto: Carga el video banner2
+        // Lara: Video expandido
         drawerVideoArea.innerHTML = `
-          <video autoplay muted loop playsinline poster="${item.img}">
+          <video autoplay muted loop playsinline controls poster="${item.posterImg}">
             <source src="./banner2.mp4" type="video/mp4">
             <source src="banner2.mp4" type="video/mp4">
             <source src="./banner2.webm" type="video/webm">
-            <img src="./banner2.gif" alt="Barquisimeto Preview" style="width:100%;height:100%;object-fit:cover;">
+            <img src="./banner2.gif" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;">
           </video>
         `;
         drawerBody.innerHTML = `
           <div style="font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-blue); font-weight: 700; margin-bottom: 6px;">
-            Episodio 01 · Lara (Barquisimeto)
+            Episodio 01 · Estado ${item.name}
           </div>
           <h3 style="font-size: 28px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 6px;">
             ${item.name}
@@ -1182,13 +1265,14 @@
           </p>
         `;
       } else {
-        // Estados en Próximamente
+        // Otros Estados en Próximamente
         drawerVideoArea.innerHTML = `
-          <img src="${item.img}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.7);">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);">
-            <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,0.7);padding:8px 16px;border-radius:980px;border:1px solid rgba(255,255,255,0.2);">
-              🔒 Contenido en Edición / Próximamente
-            </span>
+          <img src="${item.img}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.6);">
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);gap:10px;">
+            <div style="font-size: 16px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,0.7); padding: 10px 24px; border-radius: 980px; border: 1px solid rgba(255,255,255,0.3);">
+              🔒 PRÓXIMAMENTE
+            </div>
+            <span style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.12em;text-transform:uppercase;">Episodio en Plan de Rodaje</span>
           </div>
         `;
         drawerBody.innerHTML = `
@@ -1213,11 +1297,11 @@
 
     function closeDrawer(e) {
       stateDrawer.classList.remove('active');
-      drawerVideoArea.innerHTML = ''; // Detiene el video
+      drawerVideoArea.innerHTML = '';
       document.body.style.overflow = 'auto';
     }
 
-    // Tecla Escape para salir de modales
+    // Tecla Escape para salir
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeReel();
