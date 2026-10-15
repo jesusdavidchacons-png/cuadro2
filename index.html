@@ -21,7 +21,7 @@
       --accent-teal: #2ea043;
       --border-subtle: rgba(255, 255, 255, 0.08);
       --border-focus: rgba(255, 255, 255, 0.25);
-      --nav-glass: rgba(5, 6, 8, 0.75);
+      --nav-glass: rgba(5, 6, 8, 0.82);
     }
 
     * {
@@ -40,13 +40,13 @@
       line-height: 1.45;
     }
 
-    /* BARRA DE NAVEGACIÓN ESTILO APPLE */
+    /* HEADER CON LOGO OFICIAL */
     header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 48px;
+      height: 54px;
       background: var(--nav-glass);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
@@ -61,25 +61,24 @@
     .brand-group {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
 
-    .brand-title {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #fff;
+    .brand-logo-img {
+      height: 24px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 6px rgba(255,255,255,0.25));
     }
 
     .brand-badge {
       font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       background: rgba(47, 129, 247, 0.14);
       color: var(--accent-blue);
-      border: 1px solid rgba(47, 129, 247, 0.25);
-      padding: 2px 7px;
+      border: 1px solid rgba(47, 129, 247, 0.28);
+      padding: 3px 8px;
       border-radius: 980px;
       text-transform: uppercase;
     }
@@ -96,7 +95,7 @@
       color: #fff;
       font-size: 11px;
       font-weight: 600;
-      padding: 6px 14px;
+      padding: 7px 15px;
       border-radius: 980px;
       cursor: pointer;
       display: inline-flex;
@@ -106,11 +105,11 @@
     }
 
     .nav-btn-reel:hover {
-      background: rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.18);
       border-color: var(--border-focus);
     }
 
-    /* BANNER DE VIDEO DE FONDO AL INICIO */
+    /* BANNER DE VIDEO AL INICIO */
     .hero-banner-container {
       position: relative;
       width: 100%;
@@ -285,7 +284,7 @@
       margin-top: 2px;
     }
 
-    /* FILTROS TIPO FORD */
+    /* CARRUSEL TÁCTIL ESTILO NETFLIX / FORD */
     .carousel-section {
       padding: 80px 0 100px;
       position: relative;
@@ -337,7 +336,7 @@
       background: rgba(255, 255, 255, 0.12);
     }
 
-    /* PESTAÑAS SELECTORAS FORD / NETFLIX */
+    /* TABS */
     .tabs-bar {
       max-width: 1200px;
       margin: 0 auto 28px;
@@ -371,7 +370,7 @@
       border-color: rgba(255, 255, 255, 0.3);
     }
 
-    /* CONTENEDOR DEL CARRUSEL TÁCTIL HORIZONTAL (NETFLIX STYLE) */
+    /* VIEWPORT HORIZONTAL */
     .carousel-viewport {
       display: flex;
       gap: 16px;
@@ -386,7 +385,7 @@
       display: none;
     }
 
-    /* TARJETA POSTER VERTICAL TIPO NETFLIX / FORD */
+    /* CARD POSTER VERTICAL */
     .poster-card {
       flex: 0 0 clamp(280px, 28vw, 360px);
       aspect-ratio: 9 / 14;
@@ -404,6 +403,28 @@
       transform: translateY(-6px) scale(1.015);
       border-color: rgba(255, 255, 255, 0.35);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Estado Especial Activo (Barquisimeto) */
+    .poster-card.is-active {
+      border: 1.5px solid rgba(47, 129, 247, 0.6);
+      box-shadow: 0 10px 30px rgba(47, 129, 247, 0.15);
+    }
+
+    .poster-card.is-active:hover {
+      border-color: var(--accent-blue);
+      box-shadow: 0 20px 45px rgba(47, 129, 247, 0.35);
+    }
+
+    /* Estados con Próximamente */
+    .poster-card.is-coming-soon {
+      opacity: 0.72;
+      filter: saturate(0.85);
+    }
+
+    .poster-card.is-coming-soon:hover {
+      opacity: 0.95;
+      filter: saturate(1);
     }
 
     .poster-image {
@@ -425,12 +446,11 @@
       background: linear-gradient(180deg, 
         rgba(5, 6, 8, 0.6) 0%, 
         rgba(5, 6, 8, 0.05) 35%, 
-        rgba(5, 6, 8, 0.4) 65%,
-        rgba(5, 6, 8, 0.95) 100%);
+        rgba(5, 6, 8, 0.45) 65%,
+        rgba(5, 6, 8, 0.96) 100%);
       z-index: 2;
     }
 
-    /* CONTENIDO SUPERIOR DE LA TARJETA */
     .poster-top-bar {
       position: absolute;
       top: 18px;
@@ -440,6 +460,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 8px;
     }
 
     .vehicle-badge-ford {
@@ -454,6 +475,7 @@
       letter-spacing: 0.04em;
       color: #fff;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .vehicle-badge-ford.cs95 {
@@ -466,14 +488,28 @@
       color: #7ee787;
     }
 
-    .state-index {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: rgba(255, 255, 255, 0.6);
+    .status-badge {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 3px 8px;
+      border-radius: 980px;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
-    /* CONTENIDO INFERIOR DE LA TARJETA */
+    .status-badge.available {
+      background: rgba(47, 129, 247, 0.2);
+      border: 1px solid rgba(47, 129, 247, 0.5);
+      color: #79c0ff;
+    }
+
+    .status-badge.soon {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-muted);
+    }
+
     .poster-bottom-content {
       position: absolute;
       bottom: 22px;
@@ -510,8 +546,8 @@
     }
 
     .poster-arrow-circle {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(4px);
@@ -522,12 +558,19 @@
       color: #fff;
       font-size: 14px;
       transition: all 0.2s ease;
+      flex-shrink: 0;
     }
 
     .poster-card:hover .poster-arrow-circle {
       background: #fff;
       color: #000;
       transform: translateX(3px);
+    }
+
+    .poster-card.is-active .poster-arrow-circle {
+      background: var(--accent-blue);
+      border-color: var(--accent-blue);
+      color: #fff;
     }
 
     .poster-test-desc {
@@ -537,7 +580,7 @@
       font-weight: 400;
     }
 
-    /* MANIFIESTO EDITORIAL */
+    /* EDITORIAL */
     .editorial-section {
       max-width: 1200px;
       margin: 40px auto 100px;
@@ -565,7 +608,7 @@
       margin-top: 18px;
     }
 
-    /* MODAL DEL REEL DE YOUTUBE */
+    /* MODAL DE VIDEO YOUTUBE */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -633,34 +676,56 @@
       border: none;
     }
 
-    /* MODAL DE DETALLE DEL ESTADO */
+    /* MODAL / DRAWER INTERACTIVO PARA ESTADOS (CON BANNER2 PARA BARQUISIMETO) */
     .state-drawer {
       position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: var(--bg-surface-elevated);
-      border-top: 1px solid var(--border-subtle);
-      border-radius: 24px 24px 0 0;
-      padding: 36px 28px 48px;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       z-index: 2100;
-      transform: translateY(100%);
-      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-      max-width: 800px;
-      margin: 0 auto;
-      right: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
 
     .state-drawer.active {
-      transform: translateY(0);
+      display: flex;
     }
 
-    .drawer-handle {
-      width: 40px;
-      height: 4px;
-      background: var(--border-focus);
-      border-radius: 2px;
-      margin: 0 auto 20px;
+    .drawer-card {
+      width: 100%;
+      max-width: 760px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      animation: popIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.96); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .drawer-video-container {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .drawer-video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .drawer-body {
+      padding: 28px 24px;
     }
 
     /* FOOTER */
@@ -696,6 +761,9 @@
       header {
         padding: 0 16px;
       }
+      .brand-logo-img {
+        height: 20px;
+      }
       .carousel-header-wrapper {
         flex-direction: column;
         align-items: flex-start;
@@ -709,10 +777,14 @@
 </head>
 <body>
 
-  <!-- BARRA DE NAVEGACIÓN -->
+  <!-- HEADER CON EL LOGO SOLICITADO -->
   <header>
     <div class="brand-group">
-      <div class="brand-title">CHANGAN</div>
+      <img 
+        src="https://i.postimg.cc/CxhD6BQL/LETRAS-CHANGAN.png" 
+        alt="Changan Logo" 
+        class="brand-logo-img"
+      >
       <div class="brand-badge">PROYECTO PAÍS</div>
     </div>
     <div class="nav-actions">
@@ -725,7 +797,7 @@
     </div>
   </header>
 
-  <!-- BANNER DE VIDEO AL INICIO -->
+  <!-- BANNER DE VIDEO DE FONDO (BANNER) -->
   <section class="hero-banner-container">
     <video class="hero-video-bg" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1920&q=80">
       <source src="./banner.mp4" type="video/mp4">
@@ -782,7 +854,7 @@
     <div class="carousel-header-wrapper">
       <div class="carousel-title-group">
         <h2>Ruta por Estados</h2>
-        <p>Desliza horizontalmente para conocer el vehículo y la prueba asignada a cada geografía.</p>
+        <p>Desliza horizontalmente. Barquisimeto disponible para previsualización inmediata; los demás estados en postproducción.</p>
       </div>
       <div class="carousel-arrows">
         <button class="carousel-arrow-btn" onclick="scrollCarousel(-1)" aria-label="Anterior">←</button>
@@ -803,7 +875,7 @@
     </div>
   </section>
 
-  <!-- MANIFIESTO EDITORIAL (ESTRATEGIA VS VENTA) -->
+  <!-- MANIFIESTO EDITORIAL -->
   <section class="editorial-section">
     <div>
       <div class="campaign-eyebrow" style="margin-bottom: 8px;">Criterio Estratégico</div>
@@ -843,80 +915,93 @@
     </div>
   </div>
 
-  <!-- DRAWER INFORMATIVO DE CADA ESTADO -->
-  <div class="state-drawer" id="stateDrawer">
-    <div class="drawer-handle"></div>
-    <div id="drawerContent"></div>
-    <div style="margin-top: 24px; text-align: right;">
-      <button class="btn-solid-white" onclick="closeDrawer()" style="padding: 8px 20px; font-size: 12px;">Cerrar Ficha</button>
+  <!-- MODAL / VISOR DE ESTADO (REPRODUCE BANNER2 PARA BARQUISIMETO) -->
+  <div class="state-drawer" id="stateDrawer" onclick="closeDrawer(event)">
+    <div class="drawer-card" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeDrawer(event)" style="top: 12px; right: 12px;">✕</button>
+      <div id="drawerVideoArea" class="drawer-video-container">
+        <!-- Inyección dinámica de video o imagen -->
+      </div>
+      <div class="drawer-body" id="drawerBody">
+        <!-- Inyección dinámica de textos -->
+      </div>
     </div>
   </div>
 
   <script>
     const YOUTUBE_URL = "https://www.youtube-nocookie.com/embed/MDSpoX-GL0Y?autoplay=1&rel=0";
 
-    // Data de los 16 Estados con el nombre de cada camioneta y fotos de referencia
+    // 16 ESTADOS: Barquisimeto de 1ro (DISPONIBLE con banner2), Aragua de 2do, y los demás en Próximamente
     const states = [
       {
         id: "01",
+        name: "Lara (Barquisimeto)",
+        available: true,
+        vehicle: "Changan CS55 Plus Turbo",
+        type: "CS55 Plus",
+        videoFile: "banner2", // Tu archivo banner2.mp4 o banner2.gif
+        img: "https://images.unsplash.com/photo-1508873696983-2df5293cb32b?auto=format&fit=crop&w=800&q=80",
+        test: "Dinámica y absorción de suspensión en los bulevares crepusculares y asfalto semiárido de Barquisimeto."
+      },
+      {
+        id: "02",
+        name: "Aragua",
+        available: false,
+        vehicle: "Changan CS55 Plus Turbo",
+        type: "CS55 Plus",
+        img: "https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?auto=format&fit=crop&w=800&q=80",
+        test: "Agilidad del chasis en las cerradas curvas de selva nublada de Henri Pittier hacia la costa."
+      },
+      {
+        id: "03",
         name: "Mérida",
+        available: false,
         vehicle: "Changan CS95 AWD",
         type: "CS95 AWD",
         img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80",
         test: "Ascenso a gran altitud, frenado motor en bajadas pronunciadas y aclimatación en el Collado del Cóndor."
       },
       {
-        id: "02",
+        id: "04",
         name: "Táchira",
+        available: false,
         vehicle: "Changan CS95 AWD",
         type: "CS95 AWD",
         img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
         test: "Torque sostenido y confort de marcha en curvas estrechas de cordillera y calzadas empinadas."
       },
       {
-        id: "03",
+        id: "05",
         name: "Falcón",
-        vehicle: "Changan CS55 Plus",
+        available: false,
+        vehicle: "Changan CS55 Plus Turbo",
         type: "CS55 Plus",
         img: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80",
         test: "Estabilidad con vientos cruzados sostenidos en el Istmo y paso seguro en las arenas de los Médanos."
       },
       {
-        id: "04",
-        name: "Lara",
-        vehicle: "Changan CS55 Plus",
-        type: "CS55 Plus",
-        img: "https://images.unsplash.com/photo-1508873696983-2df5293cb32b?auto=format&fit=crop&w=800&q=80",
-        test: "Capacidad de absorción de la suspensión en tramos semiáridos y contrastes de luz de atardecer crepuscular."
-      },
-      {
-        id: "05",
-        name: "Aragua",
-        vehicle: "Changan CS55 Plus",
-        type: "CS55 Plus",
-        img: "https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?auto=format&fit=crop&w=800&q=80",
-        test: "Agilidad del chasis en las cerradas curvas de selva nublada de Henri Pittier hacia la costa."
-      },
-      {
         id: "06",
-        name: "Carabobo",
-        vehicle: "Changan CS55 Plus",
-        type: "CS55 Plus",
-        img: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80",
-        test: "Recuperación de aceleración y eficiencia térmica en autopistas interurbanas de alto flujo."
-      },
-      {
-        id: "07",
         name: "Bolívar",
+        available: false,
         vehicle: "Changan CS95 AWD",
         type: "CS95 AWD",
         img: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80",
         test: "Autonomía de crucero en rectas infinitas y tracción superior en la aproximación a La Gran Sabana."
       },
       {
+        id: "07",
+        name: "Carabobo",
+        available: false,
+        vehicle: "Changan CS55 Plus Turbo",
+        type: "CS55 Plus",
+        img: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80",
+        test: "Recuperación de aceleración y eficiencia térmica en autopistas interurbanas de alto flujo."
+      },
+      {
         id: "08",
         name: "Anzoátegui",
-        vehicle: "Changan CS55 Plus",
+        available: false,
+        vehicle: "Changan CS55 Plus Turbo",
         type: "CS55 Plus",
         img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
         test: "Rendimiento del aire acondicionado bajo temperaturas costeras extremas y dinamismo en la Troncal 9."
@@ -924,6 +1009,7 @@
       {
         id: "09",
         name: "Monagas",
+        available: false,
         vehicle: "Changan CS95 AWD",
         type: "CS95 AWD",
         img: "https://images.unsplash.com/photo-1511497584788-87676104235f?auto=format&fit=crop&w=800&q=80",
@@ -932,7 +1018,8 @@
       {
         id: "10",
         name: "Sucre",
-        vehicle: "Changan CS55 Plus",
+        available: false,
+        vehicle: "Changan CS55 Plus Turbo",
         type: "CS55 Plus",
         img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
         test: "Frenado en bajadas con curvas de cornisa marina con vista directa al Golfo de Cariaco."
@@ -940,6 +1027,7 @@
       {
         id: "11",
         name: "Guárico",
+        available: false,
         vehicle: "Changan CS95 AWD",
         type: "CS95 AWD",
         img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80",
@@ -948,6 +1036,7 @@
       {
         id: "12",
         name: "Barinas",
+        available: false,
         vehicle: "Changan CS95 AWD",
         type: "CS95 AWD",
         img: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=800&q=80",
@@ -956,7 +1045,8 @@
       {
         id: "13",
         name: "Portuguesa",
-        vehicle: "Changan CS55 Plus",
+        available: false,
+        vehicle: "Changan CS55 Plus Turbo",
         type: "CS55 Plus",
         img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80",
         test: "Eficiencia de combustible en trayectos planos de producción agrícola y control de crucero adaptativo."
@@ -964,7 +1054,8 @@
       {
         id: "14",
         name: "Yaracuy",
-        vehicle: "Changan CS55 Plus",
+        available: false,
+        vehicle: "Changan CS55 Plus Turbo",
         type: "CS55 Plus",
         img: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80",
         test: "Respuesta de los limpiaparabrisas automáticos y adherencia de llantas en tormentas tropicales repentinas."
@@ -972,7 +1063,8 @@
       {
         id: "15",
         name: "Miranda",
-        vehicle: "Changan CS55 Plus",
+        available: false,
+        vehicle: "Changan CS55 Plus Turbo",
         type: "CS55 Plus",
         img: "https://images.unsplash.com/photo-1477959858617-67f30bc75b82?auto=format&fit=crop&w=800&q=80",
         test: "Transición de la autopista Gran Mariscal de Ayacucho hacia el litoral costero de Higuerote."
@@ -980,6 +1072,7 @@
       {
         id: "16",
         name: "Zulia",
+        available: false,
         vehicle: "Changan CS95 AWD",
         type: "CS95 AWD",
         img: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=80",
@@ -998,8 +1091,12 @@
       filtered.forEach(item => {
         const isCs95 = item.type === 'CS95 AWD';
         const card = document.createElement('div');
-        card.className = 'poster-card';
-        card.onclick = () => openDrawer(item);
+        card.className = `poster-card ${item.available ? 'is-active' : 'is-coming-soon'}`;
+        card.onclick = () => openStateDetails(item);
+
+        const statusLabel = item.available 
+          ? '<span class="status-badge available">● Disponible</span>' 
+          : '<span class="status-badge soon">🔒 Próximamente</span>';
 
         card.innerHTML = `
           <img class="poster-image" src="${item.img}" alt="${item.name}" loading="lazy">
@@ -1009,7 +1106,7 @@
             <span class="vehicle-badge-ford ${isCs95 ? 'cs95' : 'cs55'}">
               ${item.vehicle}
             </span>
-            <span class="state-index">${item.id} / 16</span>
+            ${statusLabel}
           </div>
 
           <div class="poster-bottom-content">
@@ -1018,7 +1115,7 @@
             </div>
             <div class="poster-title-row">
               <span class="poster-state-name">${item.name}</span>
-              <div class="poster-arrow-circle">→</div>
+              <div class="poster-arrow-circle">${item.available ? '▶' : '→'}</div>
             </div>
             <p class="poster-test-desc">${item.test}</p>
           </div>
@@ -1054,34 +1151,73 @@
       document.body.style.overflow = 'auto';
     }
 
-    // Drawer de Estado
+    // Drawer / Visor de Estado (Reproduce banner2 para Barquisimeto)
     const stateDrawer = document.getElementById('stateDrawer');
-    const drawerContent = document.getElementById('drawerContent');
+    const drawerVideoArea = document.getElementById('drawerVideoArea');
+    const drawerBody = document.getElementById('drawerBody');
 
-    function openDrawer(item) {
-      drawerContent.innerHTML = `
-        <div style="font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-blue); font-weight: 700; margin-bottom: 6px;">
-          Estado ${item.id} de 16
-        </div>
-        <h3 style="font-size: 32px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 4px;">
-          ${item.name}
-        </h3>
-        <div style="font-size: 14px; color: #fff; font-weight: 600; margin-bottom: 16px;">
-          Vehículo Asignado: <span style="color: var(--accent-blue);">${item.vehicle}</span>
-        </div>
-        <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">
-          <strong>Validación Cinematográfica en Asfalto:</strong><br>
-          ${item.test}
-        </p>
-      `;
+    function openStateDetails(item) {
+      if (item.available) {
+        // Barquisimeto: Carga el video banner2
+        drawerVideoArea.innerHTML = `
+          <video autoplay muted loop playsinline poster="${item.img}">
+            <source src="./banner2.mp4" type="video/mp4">
+            <source src="banner2.mp4" type="video/mp4">
+            <source src="./banner2.webm" type="video/webm">
+            <img src="./banner2.gif" alt="Barquisimeto Preview" style="width:100%;height:100%;object-fit:cover;">
+          </video>
+        `;
+        drawerBody.innerHTML = `
+          <div style="font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-blue); font-weight: 700; margin-bottom: 6px;">
+            Episodio 01 · Lara (Barquisimeto)
+          </div>
+          <h3 style="font-size: 28px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 6px;">
+            ${item.name}
+          </h3>
+          <div style="font-size: 13px; color: #fff; font-weight: 600; margin-bottom: 14px;">
+            Vehículo Protagonista: <span style="color: var(--accent-teal);">${item.vehicle}</span>
+          </div>
+          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">
+            <strong>Ficha de Rodaje:</strong> ${item.test}
+          </p>
+        `;
+      } else {
+        // Estados en Próximamente
+        drawerVideoArea.innerHTML = `
+          <img src="${item.img}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.7);">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);">
+            <span style="font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,0.7);padding:8px 16px;border-radius:980px;border:1px solid rgba(255,255,255,0.2);">
+              🔒 Contenido en Edición / Próximamente
+            </span>
+          </div>
+        `;
+        drawerBody.innerHTML = `
+          <div style="font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 6px;">
+            Ruta Planificada · Estado ${item.id} de 16
+          </div>
+          <h3 style="font-size: 28px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 6px;">
+            ${item.name}
+          </h3>
+          <div style="font-size: 13px; color: #fff; font-weight: 600; margin-bottom: 14px;">
+            Vehículo Asignado: <span style="color: var(--accent-blue);">${item.vehicle}</span>
+          </div>
+          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">
+            <strong>Prueba Asignada:</strong> ${item.test}
+          </p>
+        `;
+      }
+
       stateDrawer.classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
 
-    function closeDrawer() {
+    function closeDrawer(e) {
       stateDrawer.classList.remove('active');
+      drawerVideoArea.innerHTML = ''; // Detiene el video
+      document.body.style.overflow = 'auto';
     }
 
-    // Cerrar con Escape
+    // Tecla Escape para salir de modales
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeReel();
@@ -1089,7 +1225,7 @@
       }
     });
 
-    // Iniciar carrusel al cargar
+    // Iniciar
     renderCarousel('all');
   </script>
 </body>
