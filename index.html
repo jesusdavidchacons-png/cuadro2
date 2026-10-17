@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Tu Destino es Venezuela | Changan CS95 AWD & CS55 Plus</title>
+  <title>Venezuela es tu Destino | Changan CS95 AWD & CS55 Plus</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,6 +38,198 @@
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       overflow-x: hidden;
       line-height: 1.45;
+    }
+
+    /* ==============================================================
+       OVERLAY CINEMATOGRÁFICO: GIRAR DISPOSITIVO + INTRO VIMEO
+       ============================================================== */
+    .experience-gate {
+      position: fixed;
+      inset: 0;
+      background: #020305;
+      z-index: 5000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+      padding: 24px;
+    }
+
+    .experience-gate.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Vista obligatoria cuando está vertical en móvil */
+    .gate-rotate-prompt {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+      max-width: 320px;
+    }
+
+    .gate-logo {
+      height: 32px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 12px rgba(255,255,255,0.3));
+      margin-bottom: 8px;
+    }
+
+    .phone-rotate-icon {
+      width: 52px;
+      height: 52px;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      border-radius: 12px;
+      position: relative;
+      animation: rotatePhone 2.6s infinite ease-in-out;
+    }
+
+    .phone-rotate-icon::after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 2px;
+    }
+
+    @keyframes rotatePhone {
+      0%, 15% { transform: rotate(0deg); }
+      50%, 75% { transform: rotate(90deg); }
+      90%, 100% { transform: rotate(90deg); }
+    }
+
+    .rotate-title {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+
+    .rotate-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Vista cuando ya está horizontal (o pantalla ancha) */
+    .gate-cinema-ready {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 22px;
+      max-width: 680px;
+      position: relative;
+    }
+
+    /* BOTÓN SALTAR INTRO PEQUEÑO ARRIBA A LA DERECHA */
+    .btn-skip-intro {
+      position: fixed;
+      top: 18px;
+      right: 22px;
+      z-index: 5200;
+      background: rgba(14, 17, 22, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 980px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-skip-intro:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    /* BOTÓN FANTASMA CINEMATOGRÁFICO */
+    .btn-ghost-cinema {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 16px 36px;
+      border-radius: 980px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .btn-ghost-cinema:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: #fff;
+      transform: scale(1.03);
+      box-shadow: 0 0 40px rgba(47, 129, 247, 0.35);
+    }
+
+    .btn-ghost-cinema svg {
+      transition: transform 0.2s ease;
+    }
+
+    .btn-ghost-cinema:hover svg {
+      transform: scale(1.15);
+    }
+
+    /* PANTALLA COMPLETA REPRODUCTOR VIMEO */
+    .cinema-vimeo-stage {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 5100;
+      display: none;
+    }
+
+    .cinema-vimeo-stage.active {
+      display: block;
+    }
+
+    .cinema-vimeo-stage iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* LÓGICA DE DETECCIÓN ORIENTACIÓN */
+    @media (orientation: portrait) and (max-width: 900px) {
+      .gate-rotate-prompt {
+        display: flex;
+      }
+      .gate-cinema-ready {
+        display: none !important;
+      }
+    }
+
+    @media (orientation: landscape) or (min-width: 901px) {
+      .gate-rotate-prompt {
+        display: none !important;
+      }
+      .gate-cinema-ready {
+        display: flex;
+      }
     }
 
     /* HEADER CON LOGO OFICIAL */
@@ -109,7 +301,7 @@
       border-color: var(--border-focus);
     }
 
-    /* BANNER DE VIDEO AL INICIO */
+    /* BANNER DE VIDEO AL INICIO: BANERSITO.mp4 */
     .hero-banner-container {
       position: relative;
       width: 100%;
@@ -405,27 +597,6 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
     }
 
-    /* Lara Activo */
-    .poster-card.is-active {
-      border: 1.5px solid rgba(47, 129, 247, 0.65);
-      box-shadow: 0 10px 30px rgba(47, 129, 247, 0.2);
-    }
-
-    .poster-card.is-active:hover {
-      border-color: var(--accent-blue);
-      box-shadow: 0 20px 45px rgba(47, 129, 247, 0.45);
-    }
-
-    /* Video en tarjeta de Lara */
-    .card-video-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 1;
-    }
-
     /* Imagen de las camionetas en las tarjetas */
     .poster-image {
       position: absolute;
@@ -434,7 +605,7 @@
       height: 100%;
       object-fit: cover;
       transition: transform 0.6s ease;
-      filter: brightness(0.7) contrast(1.08);
+      filter: brightness(0.65) contrast(1.1);
       z-index: 1;
     }
 
@@ -488,19 +659,6 @@
     .vehicle-badge-ford.cs55 {
       border-color: rgba(46, 160, 67, 0.4);
       color: #7ee787;
-    }
-
-    .status-badge-top {
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      padding: 3px 8px;
-      border-radius: 980px;
-      text-transform: uppercase;
-      white-space: nowrap;
-      background: rgba(47, 129, 247, 0.2);
-      border: 1px solid rgba(47, 129, 247, 0.5);
-      color: #79c0ff;
     }
 
     /* CARTEL MONUMENTAL "PRÓXIMAMENTE" AL CENTRO */
@@ -623,12 +781,6 @@
       transform: translateX(3px);
     }
 
-    .poster-card.is-active .poster-arrow-circle {
-      background: var(--accent-blue);
-      border-color: var(--accent-blue);
-      color: #fff;
-    }
-
     .poster-test-desc {
       font-size: 12px;
       color: rgba(255, 255, 255, 0.75);
@@ -662,74 +814,6 @@
 
     .editorial-p + .editorial-p {
       margin-top: 18px;
-    }
-
-    /* MODAL DE VIDEO YOUTUBE */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.92);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      z-index: 2000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-
-    .modal-backdrop.active {
-      display: flex;
-    }
-
-    .modal-window {
-      width: 100%;
-      max-width: 980px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 18px;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
-    }
-
-    .modal-close-btn {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: rgba(0, 0, 0, 0.65);
-      border: 1px solid var(--border-subtle);
-      color: #fff;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-      font-size: 16px;
-      transition: all 0.2s ease;
-    }
-
-    .modal-close-btn:hover {
-      background: #fff;
-      color: #000;
-    }
-
-    .video-wrapper-169 {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-    }
-
-    .video-wrapper-169 iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
     }
 
     /* MODAL / VISOR DE ESTADO */
@@ -774,14 +858,32 @@
       overflow: hidden;
     }
 
-    .drawer-video-container video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
     .drawer-body {
       padding: 28px 24px;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid var(--border-subtle);
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      font-size: 16px;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close-btn:hover {
+      background: #fff;
+      color: #000;
     }
 
     /* FOOTER */
@@ -833,7 +935,61 @@
 </head>
 <body>
 
-  <!-- HEADER CON LOGO OFICIAL -->
+  <!-- ==============================================================
+       OVERLAY INICIAL: GIRAR TELÉFONO + EXPERIENCIA CINEMATOGRÁFICA
+       ============================================================== -->
+  <div class="experience-gate" id="experienceGate">
+    <!-- Botón discreto superior para saltar el video -->
+    <button class="btn-skip-intro" onclick="skipToWebsite()">Saltar Intro ✕</button>
+
+    <!-- Estado 1: Móvil en vertical (Pide girar) -->
+    <div class="gate-rotate-prompt">
+      <img src="https://i.postimg.cc/CxhD6BQL/LETRAS-CHANGAN.png" alt="Changan Logo" class="gate-logo">
+      <div class="phone-rotate-icon"></div>
+      <div class="rotate-title">Gira tu dispositivo</div>
+      <div class="rotate-desc">
+        Para disfrutar la experiencia cinematográfica en formato panorámico 16:9.
+      </div>
+    </div>
+
+    <!-- Estado 2: Dispositivo horizontal / Escritorio (Botón fantasma de estreno) -->
+    <div class="gate-cinema-ready">
+      <img src="https://i.postimg.cc/CxhD6BQL/LETRAS-CHANGAN.png" alt="Changan Logo" class="gate-logo" style="height: 38px;">
+      
+      <div style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent-blue); font-weight: 700;">
+        Estreno Audiovisual Exclusivo
+      </div>
+
+      <h2 style="font-size: clamp(28px, 4.5vw, 54px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1;">
+        Venezuela es tu Destino
+      </h2>
+
+      <!-- BOTÓN FANTASMA DIRECTO AL VÍDEO -->
+      <button class="btn-ghost-cinema" onclick="startVimeoExperience()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        Iniciar Experiencia: Venezuela es tu Destino
+      </button>
+
+      <span style="font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.45);">
+        Audio & Video 4K Master Grade
+      </span>
+    </div>
+  </div>
+
+  <!-- REPRODUCTOR VIMEO A PANTALLA COMPLETA CON EL ENLACE PROPORCIONADO -->
+  <div class="cinema-vimeo-stage" id="cinemaVimeoStage">
+    <button class="btn-skip-intro" style="z-index: 5300;" onclick="skipToWebsite()">Cerrar Video ✕</button>
+    <iframe 
+      id="vimeoFrame"
+      src="" 
+      allow="autoplay; fullscreen; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- HEADER PRINCIPAL CON LOGO OFICIAL -->
   <header>
     <div class="brand-group">
       <img 
@@ -844,21 +1000,21 @@
       <div class="brand-badge">PROYECTO PAÍS</div>
     </div>
     <div class="nav-actions">
-      <button class="nav-btn-reel" onclick="openReel()">
+      <button class="nav-btn-reel" onclick="relaunchExperience()">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
           <path d="M8 5v14l11-7z"/>
         </svg>
-        Ver Reel Conceptual
+        Ver Film Central
       </button>
     </div>
   </header>
 
-  <!-- BANNER DE VIDEO DE FONDO -->
+  <!-- BANNER PRINCIPAL DE VIDEO: BANERSITO.mp4 -->
   <section class="hero-banner-container">
     <video class="hero-video-bg" autoplay muted loop playsinline poster="https://i.postimg.cc/Xqvqkdvk/Nano-Banana-Pro-quiero-cambiar-el-fondo-en-otra-carretera-pero-sin-modificar-nada-de-la-camioneta.png">
-      <source src="./banner.mp4" type="video/mp4">
-      <source src="banner.mp4" type="video/mp4">
-      <source src="banner.webm" type="video/webm">
+      <source src="./BANERSITO.mp4" type="video/mp4">
+      <source src="BANERSITO.mp4" type="video/mp4">
+      <source src="./BANERSITO.webm" type="video/webm">
     </video>
 
     <div class="hero-overlay"></div>
@@ -866,17 +1022,17 @@
     <div class="hero-content">
       <div class="campaign-eyebrow">Validación de Territorio Real</div>
       <h1 class="hero-heading">
-        <span>Tu Destino es Venezuela.</span>
+        <span>Venezuela es tu Destino.</span>
       </h1>
       <p class="hero-subheading">
         16 estados recorridos. Dos camionetas sometidas a la topografía real del país para demostrar solidez y arraigo genuino.
       </p>
       <div class="hero-buttons">
-        <button class="btn-solid-white" onclick="openReel()">
+        <button class="btn-solid-white" onclick="relaunchExperience()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
             <path d="M8 5v14l11-7z"/>
           </svg>
-          Reproducir Reel Conceptual
+          Reproducir Film Central
         </button>
         <a href="#catalogo" class="btn-outline-glass">
           Explorar los 16 Estados ↓
@@ -905,12 +1061,12 @@
     </div>
   </div>
 
-  <!-- CARRUSEL TÁCTIL HORIZONTAL (TIPO FORD / NETFLIX) -->
+  <!-- SECCIÓN CARRUSEL TÁCTIL HORIZONTAL (TIPO FORD / NETFLIX) -->
   <section class="carousel-section" id="catalogo">
     <div class="carousel-header-wrapper">
       <div class="carousel-title-group">
         <h2>Ruta por Estados</h2>
-        <p>Desliza horizontalmente. Estado Lara en reproducción en vivo; los siguientes episodios en etapa de postproducción.</p>
+        <p>Desliza horizontalmente. Los 16 episodios se encuentran actualmente en plan de rodaje y postproducción.</p>
       </div>
       <div class="carousel-arrows">
         <button class="carousel-arrow-btn" onclick="scrollCarousel(-1)" aria-label="Anterior">←</button>
@@ -955,23 +1111,7 @@
     <div>Dirección de Producción & Cinematografía</div>
   </footer>
 
-  <!-- MODAL DE YOUTUBE -->
-  <div class="modal-backdrop" id="videoModal" onclick="closeReel(event)">
-    <div class="modal-window" onclick="event.stopPropagation()">
-      <button class="modal-close-btn" onclick="closeReel(event)">✕</button>
-      <div class="video-wrapper-169">
-        <iframe 
-          id="youtubePlayer"
-          src="" 
-          title="Tu Destino es Venezuela | Reel Conceptual" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-          allowfullscreen>
-        </iframe>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL / VISOR DE ESTADO -->
+  <!-- MODAL / VISOR DE ESTADO BLOQUEADO -->
   <div class="state-drawer" id="stateDrawer" onclick="closeDrawer(event)">
     <div class="drawer-card" onclick="event.stopPropagation()">
       <button class="modal-close-btn" onclick="closeDrawer(event)" style="top: 12px; right: 12px;">✕</button>
@@ -985,7 +1125,31 @@
   </div>
 
   <script>
-    const YOUTUBE_URL = "https://www.youtube-nocookie.com/embed/MDSpoX-GL0Y?autoplay=1&rel=0";
+    // URL OFICIAL DE VIMEO PROPORCIONADA CON AUTOPLAY ACTIVO
+    const VIMEO_EMBED_URL = "https://player.vimeo.com/video/1236900298?autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479";
+
+    // Manejo de la experiencia inicial
+    const gate = document.getElementById('experienceGate');
+    const vimeoStage = document.getElementById('cinemaVimeoStage');
+    const vimeoFrame = document.getElementById('vimeoFrame');
+
+    function startVimeoExperience() {
+      vimeoFrame.src = VIMEO_EMBED_URL;
+      vimeoStage.classList.add('active');
+    }
+
+    function skipToWebsite() {
+      // Detener video de Vimeo
+      vimeoFrame.src = "";
+      vimeoStage.classList.remove('active');
+      gate.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    function relaunchExperience() {
+      gate.classList.remove('hidden');
+      startVimeoExperience();
+    }
 
     // 3 Imágenes originales de las camionetas para rotar en los estados
     const originalVehicleImages = [
@@ -994,16 +1158,14 @@
       "https://i.postimg.cc/28hdbNPH/Nano-Banana-Pro-quiero-cambiar-el-fondo-en-otra-carretera-pero-sin-modificar-nada-de-la-camioneta.png"
     ];
 
-    // Estados base
+    // 16 ESTADOS: TODOS 100% BLOQUEADOS CON "PRÓXIMAMENTE"
     const rawStates = [
       {
         id: "01",
         name: "Lara",
-        available: true,
+        available: false,
         vehicle: "Changan CS55 Plus Turbo",
         type: "CS55 Plus",
-        hasVideoBanner: true,
-        posterImg: originalVehicleImages[0],
         test: "Dinámica y absorción de suspensión en los bulevares crepusculares y asfalto semiárido de Lara."
       },
       {
@@ -1128,12 +1290,8 @@
       }
     ];
 
-    // Asignación aleatoria balanceada de las 3 imágenes a los estados
+    // Asignación balanceada de las 3 imágenes a los estados
     const states = rawStates.map((st, idx) => {
-      if (st.hasVideoBanner) {
-        return st;
-      }
-      // Selección aleatoria usando el pool de 3 imágenes
       const randImg = originalVehicleImages[(idx + Math.floor(Math.random() * 3)) % originalVehicleImages.length];
       return {
         ...st,
@@ -1152,45 +1310,24 @@
       filtered.forEach(item => {
         const isCs95 = item.type === 'CS95 AWD';
         const card = document.createElement('div');
-        card.className = `poster-card ${item.available ? 'is-active' : ''}`;
+        card.className = 'poster-card';
         card.onclick = () => openStateDetails(item);
 
-        let mediaHtml = '';
-        if (item.hasVideoBanner) {
-          mediaHtml = `
-            <video class="card-video-bg" autoplay muted loop playsinline poster="${item.posterImg}">
-              <source src="./banner2.mp4" type="video/mp4">
-              <source src="banner2.mp4" type="video/mp4">
-              <source src="./banner2.webm" type="video/webm">
-              <img src="./banner2.gif" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;">
-            </video>
-          `;
-        } else {
-          mediaHtml = `<img class="poster-image" src="${item.img}" alt="${item.name}" loading="lazy">`;
-        }
-
-        const centerTeaser = !item.available ? `
+        card.innerHTML = `
+          <img class="poster-image" src="${item.img}" alt="${item.name}" loading="lazy">
+          <div class="poster-gradient"></div>
+          
+          <!-- CARTEL MONUMENTAL PRÓXIMAMENTE AL CENTRO -->
           <div class="center-teaser-overlay">
             <div class="badge-lock-icon">🔒</div>
             <div class="giant-coming-soon">PRÓXIMAMENTE</div>
             <span class="teaser-subtext">Episodio en Postproducción</span>
           </div>
-        ` : '';
-
-        const topBadge = item.available 
-          ? '<span class="status-badge-top">● En Emisión</span>' 
-          : '';
-
-        card.innerHTML = `
-          ${mediaHtml}
-          <div class="poster-gradient"></div>
-          ${centerTeaser}
           
           <div class="poster-top-bar">
             <span class="vehicle-badge-ford ${isCs95 ? 'cs95' : 'cs55'}">
               ${item.vehicle}
             </span>
-            ${topBadge}
           </div>
 
           <div class="poster-bottom-content">
@@ -1199,7 +1336,7 @@
             </div>
             <div class="poster-title-row">
               <span class="poster-state-name">${item.name}</span>
-              <div class="poster-arrow-circle">${item.available ? '▶' : '→'}</div>
+              <div class="poster-arrow-circle">→</div>
             </div>
             <p class="poster-test-desc">${item.test}</p>
           </div>
@@ -1219,76 +1356,35 @@
       renderCarousel(type);
     }
 
-    // Modal de Video (Reel de YouTube)
-    const videoModal = document.getElementById('videoModal');
-    const youtubePlayer = document.getElementById('youtubePlayer');
-
-    function openReel() {
-      youtubePlayer.src = YOUTUBE_URL;
-      videoModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeReel(e) {
-      youtubePlayer.src = '';
-      videoModal.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    // Modal / Visor de Estado
+    // Modal / Drawer de Detalle para Estado Bloqueado
     const stateDrawer = document.getElementById('stateDrawer');
     const drawerVideoArea = document.getElementById('drawerVideoArea');
     const drawerBody = document.getElementById('drawerBody');
 
     function openStateDetails(item) {
-      if (item.available) {
-        drawerVideoArea.innerHTML = `
-          <video autoplay muted loop playsinline controls poster="${item.posterImg}">
-            <source src="./banner2.mp4" type="video/mp4">
-            <source src="banner2.mp4" type="video/mp4">
-            <source src="./banner2.webm" type="video/webm">
-            <img src="./banner2.gif" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;">
-          </video>
-        `;
-        drawerBody.innerHTML = `
-          <div style="font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-blue); font-weight: 700; margin-bottom: 6px;">
-            Episodio 01 · Estado ${item.name}
+      drawerVideoArea.innerHTML = `
+        <img src="${item.img}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.6);">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);gap:10px;">
+          <div style="font-size: 16px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,0.7); padding: 10px 24px; border-radius: 980px; border: 1px solid rgba(255,255,255,0.3);">
+            🔒 PRÓXIMAMENTE
           </div>
-          <h3 style="font-size: 28px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 6px;">
-            ${item.name}
-          </h3>
-          <div style="font-size: 13px; color: #fff; font-weight: 600; margin-bottom: 14px;">
-            Vehículo Protagonista: <span style="color: var(--accent-teal);">${item.vehicle}</span>
-          </div>
-          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">
-            <strong>Ficha de Rodaje:</strong> ${item.test}
-          </p>
-        `;
-      } else {
-        drawerVideoArea.innerHTML = `
-          <img src="${item.img}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.65);">
-          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.45);gap:10px;">
-            <div style="font-size: 16px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,0.7); padding: 10px 24px; border-radius: 980px; border: 1px solid rgba(255,255,255,0.3);">
-              🔒 PRÓXIMAMENTE
-            </div>
-            <span style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.12em;text-transform:uppercase;">Episodio en Plan de Rodaje</span>
-          </div>
-        `;
-        drawerBody.innerHTML = `
-          <div style="font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 6px;">
-            Ruta Planificada · Estado ${item.id} de 16
-          </div>
-          <h3 style="font-size: 28px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 6px;">
-            ${item.name}
-          </h3>
-          <div style="font-size: 13px; color: #fff; font-weight: 600; margin-bottom: 14px;">
-            Vehículo Asignado: <span style="color: var(--accent-blue);">${item.vehicle}</span>
-          </div>
-          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">
-            <strong>Prueba Asignada:</strong> ${item.test}
-          </p>
-        `;
-      }
+          <span style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.12em;text-transform:uppercase;">Episodio en Plan de Rodaje</span>
+        </div>
+      `;
+      drawerBody.innerHTML = `
+        <div style="font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 6px;">
+          Ruta Planificada · Estado ${item.id} de 16
+        </div>
+        <h3 style="font-size: 28px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 6px;">
+          ${item.name}
+        </h3>
+        <div style="font-size: 13px; color: #fff; font-weight: 600; margin-bottom: 14px;">
+          Vehículo Asignado: <span style="color: var(--accent-blue);">${item.vehicle}</span>
+        </div>
+        <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">
+          <strong>Prueba Asignada:</strong> ${item.test}
+        </p>
+      `;
 
       stateDrawer.classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -1303,7 +1399,7 @@
     // Tecla Escape para salir
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        closeReel();
+        skipToWebsite();
         closeDrawer();
       }
     });
